@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Title="Crunchyroll Downloader" Height="350" Width="525" ResizeMode="CanMinimize">
+    <Grid Margin="0,0,0,-3">
+        <Grid.Background>
+            <ImageBrush ImageSource="fond.jpg"/>
+        </Grid.Background>
+        <Button x:Name="button" Content="Start" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="384" Height="34" Click="button_Click"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="497" IsEnabled="False" IsHitTestVisible="False"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Français"/>
+            <ComboBoxItem Content="English"/>
+        </ComboBox>
+        <Label x:Name="label_Copy1" Content="Subtitles" HorizontalAlignment="Left" Margin="74,164,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="cookie_TextBox" HorizontalAlignment="Left" Height="23" Margin="311,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
+        <Button x:Name="button_Cookie" Content="Browse" HorizontalAlignment="Left" Margin="231,154,0,0" VerticalAlignment="Top" Width="75" Click="button_Cookie_Click"/>
+        <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="SRT"/>
+            <ComboBoxItem Content="ASS"/>
+        </ComboBox>
+        <Label x:Name="label1" Content="Language" HorizontalAlignment="Left" Margin="135,195,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy" Content="Format" HorizontalAlignment="Left" Margin="135,220,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy1" Content="Crunchyroll cookie path" HorizontalAlignment="Left" Margin="311,123,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="save_TextBox" HorizontalAlignment="Left" Height="23" Margin="311,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
+        <Button x:Name="button_Save" Content="Browse" HorizontalAlignment="Left" Margin="231,213,0,0" VerticalAlignment="Top" Width="75" Click="button_Save_Click"/>
+        <Label x:Name="label1_Copy2" Content="Save Path" HorizontalAlignment="Left" Margin="311,182,0,0" VerticalAlignment="Top"/>
+        <Image x:Name="crunchy_png" Margin="35,18,36,217" Source="crunchy.png" Stretch="Fill"/>
+        <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="399,279,0,0" VerticalAlignment="Top" Width="108" Height="34" IsCancel="True" Click="aboutButton_Click"/>
+
+    </Grid>
+</Window>
