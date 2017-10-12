@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace WpfApplication1
+namespace CrunchyrollDownloader
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -114,7 +114,7 @@ namespace WpfApplication1
 
         private void aboutButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("All informations on github.", "About", MessageBoxButton.OK);
+            MessageBox.Show("All informations on github. https://github.com/skid9000/Crunchyroll-Downloader", "About", MessageBoxButton.OK);
         }
     }
 }
