@@ -77,7 +77,7 @@ namespace WpfApplication1
             Machin.langue = comboBox.Text;
             Machin.format = comboBox_Copy.Text;
             Machin.cookie = cookie_TextBox.Text;
-            Machin.url = textBox.Text;
+            Machin.url = urlBox.Text;
             Machin.savePath = save_TextBox.Text;
 
             if (String.IsNullOrEmpty(Machin.url))

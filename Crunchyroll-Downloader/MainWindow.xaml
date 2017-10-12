@@ -11,26 +11,27 @@
             <ImageBrush ImageSource="fond.jpg"/>
         </Grid.Background>
         <Button x:Name="button" Content="Start" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="384" Height="34" Click="button_Click"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="497" IsEnabled="False" IsHitTestVisible="False"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="12,186,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content="Français"/>
             <ComboBoxItem Content="English"/>
         </ComboBox>
-        <Label x:Name="label_Copy1" Content="Subtitles" HorizontalAlignment="Left" Margin="74,164,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy1" Content="Subtitles" HorizontalAlignment="Left" Margin="61,157,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="cookie_TextBox" HorizontalAlignment="Left" Height="23" Margin="311,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
         <Button x:Name="button_Cookie" Content="Browse" HorizontalAlignment="Left" Margin="231,154,0,0" VerticalAlignment="Top" Width="75" Click="button_Cookie_Click"/>
-        <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Margin="12,215,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content="SRT"/>
             <ComboBoxItem Content="ASS"/>
         </ComboBox>
-        <Label x:Name="label1" Content="Language" HorizontalAlignment="Left" Margin="135,195,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy" Content="Format" HorizontalAlignment="Left" Margin="135,220,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Language" HorizontalAlignment="Left" Margin="137,188,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1_Copy" Content="Format" HorizontalAlignment="Left" Margin="137,213,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1_Copy1" Content="Crunchyroll cookie path" HorizontalAlignment="Left" Margin="311,123,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="save_TextBox" HorizontalAlignment="Left" Height="23" Margin="311,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
         <Button x:Name="button_Save" Content="Browse" HorizontalAlignment="Left" Margin="231,213,0,0" VerticalAlignment="Top" Width="75" Click="button_Save_Click"/>
         <Label x:Name="label1_Copy2" Content="Save Path" HorizontalAlignment="Left" Margin="311,182,0,0" VerticalAlignment="Top"/>
         <Image x:Name="crunchy_png" Margin="35,18,36,217" Source="crunchy.png" Stretch="Fill"/>
         <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="399,279,0,0" VerticalAlignment="Top" Width="108" Height="34" IsCancel="True" Click="aboutButton_Click"/>
+        <TextBox x:Name="urlBox" HorizontalAlignment="Left" Height="23" Margin="10,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="452"/>
+        <Label x:Name="label" Content="URL" HorizontalAlignment="Left" Margin="462,248,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
