@@ -73,12 +73,44 @@ namespace CrunchyrollDownloader
         {
             Program Machin = new Program();
 
+            if (comboBox.Text == "Français (France)")
+            {
+                Machin.langue = "frFR";
+            }
+            else if (comboBox.Text == "English (US)")
+            {
+                Machin.langue = "enUS";
+            }
+            else if (comboBox.Text == "Español")
+            {
+                Machin.langue = "esES";
+            }
+            else if (comboBox.Text == "Español (España)")
+            {
+                Machin.langue = "esLA";
+            }
+            else if (comboBox.Text == "Português (Brasil)")
+            {
+                Machin.langue = "ptBR";
+            }
+            else if (comboBox.Text == "العربية")
+            {
+                Machin.langue = "arME";
+            }
+            else if (comboBox.Text == "Italiano")
+            {
+                Machin.langue = "itIT";
+            }
+            else if (comboBox.Text == "Deutsch")
+            {
+                Machin.langue = "deDE";
+            }
 
-            Machin.langue = comboBox.Text;
             Machin.format = comboBox_Copy.Text;
             Machin.cookie = cookie_TextBox.Text;
             Machin.url = urlBox.Text;
             Machin.savePath = save_TextBox.Text;
+            Machin.STState = "0";
 
             if (String.IsNullOrEmpty(Machin.url))
             {
@@ -95,15 +127,20 @@ namespace CrunchyrollDownloader
                 MessageBox.Show("Please, put a cookie file.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (String.IsNullOrEmpty(Machin.langue))
-            {
-                MessageBox.Show("Please, choose a language.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            if (String.IsNullOrEmpty(Machin.format))
-            {
-                MessageBox.Show("Please, choose a sub format.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
+
+            if (checkBox.IsChecked.Value == true) {
+
+                if (String.IsNullOrEmpty(Machin.langue))
+                {
+                    MessageBox.Show("Please, choose a language.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+                if (String.IsNullOrEmpty(Machin.format))
+                {
+                    MessageBox.Show("Please, choose a sub format.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+                Machin.STState = "1";
             }
 
             Machin.FirstStep();
@@ -116,5 +153,14 @@ namespace CrunchyrollDownloader
         {
             MessageBox.Show("All informations on github. https://github.com/skid9000/Crunchyroll-Downloader", "About", MessageBoxButton.OK);
         }
+
+        void CheckBoxChanged()
+        {
+            comboBox.IsEnabled = checkBox.IsChecked.Value;
+            comboBox_Copy.IsEnabled = checkBox.IsChecked.Value;
+        }
+        private void checkBox_Checked(object sender, RoutedEventArgs e) => CheckBoxChanged();
+        private void checkBox_Unchecked(object sender, RoutedEventArgs e) => CheckBoxChanged();
     }
-}
+    }
+

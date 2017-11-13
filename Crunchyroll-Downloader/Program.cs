@@ -42,6 +42,7 @@ namespace CrunchyrollDownloader
             }
         }
 
+        public string STState { get; set; }
         public string url { get; set; }
         public string cookie { get; set; }
         public string langue { get; set; }
@@ -54,11 +55,26 @@ namespace CrunchyrollDownloader
             Process process = new Process();
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-            process.StartInfo.Arguments = "--write-sub --sub-lang " + langue + " --sub-format " + format + " --no-part -o " + '"' + savePath + '"' + " --cookies " + '"' + cookie + '"' + " " + url;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
-            process.Start();
-            process.WaitForExit();// Waits here for the process to exit.
-            MessageBox.Show("Download finished !", "Success !", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            if (STState == "1")
+            {
+
+                process.StartInfo.Arguments = "--write-sub --sub-lang " + langue + " --sub-format " + format + " --no-part -o " + '"' + savePath + '"' + " --cookies " + '"' + cookie + '"' + " " + url;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+                process.Start();
+                process.WaitForExit();// Waits here for the process to exit.
+                MessageBox.Show("Download finished !", "Success !", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            else
+            {
+                process.StartInfo.Arguments = "--no-part -o " + '"' + savePath + '"' + " --cookies " + '"' + cookie + '"' + " " + url;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+                process.Start();
+                process.WaitForExit();// Waits here for the process to exit.
+                MessageBox.Show("Download finished !", "Success !", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
 
 
         }

@@ -11,16 +11,21 @@
             <ImageBrush ImageSource="fond.jpg"/>
         </Grid.Background>
         <Button x:Name="button" Content="Start" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="384" Height="34" Click="button_Click"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="12,186,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="Français"/>
-            <ComboBoxItem Content="English"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="12,186,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
+            <ComboBoxItem Content="Français (France)"/>
+            <ComboBoxItem Content="English (US)"/>
+            <ComboBoxItem Content="Español"/>
+            <ComboBoxItem Content="Español (España)"/>
+            <ComboBoxItem Content="Português (Brasil)"/>
+            <ComboBoxItem Content="العربية"/>
+            <ComboBoxItem Content="Italiano"/>
+            <ComboBoxItem Content="Deutsch"/>
         </ComboBox>
-        <Label x:Name="label_Copy1" Content="Subtitles" HorizontalAlignment="Left" Margin="61,157,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="cookie_TextBox" HorizontalAlignment="Left" Height="23" Margin="311,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
         <Button x:Name="button_Cookie" Content="Browse" HorizontalAlignment="Left" Margin="231,154,0,0" VerticalAlignment="Top" Width="75" Click="button_Cookie_Click"/>
-        <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Margin="12,215,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="SRT"/>
-            <ComboBoxItem Content="ASS"/>
+        <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Margin="12,215,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
+            <ComboBoxItem Content="srt"/>
+            <ComboBoxItem Content="ass"/>
         </ComboBox>
         <Label x:Name="label1" Content="Language" HorizontalAlignment="Left" Margin="137,188,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1_Copy" Content="Format" HorizontalAlignment="Left" Margin="137,213,0,0" VerticalAlignment="Top"/>
@@ -32,6 +37,7 @@
         <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="399,279,0,0" VerticalAlignment="Top" Width="108" Height="34" IsCancel="True" Click="aboutButton_Click"/>
         <TextBox x:Name="urlBox" HorizontalAlignment="Left" Height="23" Margin="10,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="452"/>
         <Label x:Name="label" Content="URL" HorizontalAlignment="Left" Margin="462,248,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="checkBox" Content="Subtitles" HorizontalAlignment="Left" Margin="66,161,0,0" VerticalAlignment="Top" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
 
     </Grid>
 </Window>
