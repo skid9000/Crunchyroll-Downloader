@@ -26,6 +26,96 @@ namespace CrunchyrollDownloader
     {
         public MainWindow()
         {
+            string ActualFolder = @"C:\ProgramData\Crunchy-DL";
+            WebClient Client = new WebClient();
+            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
+
+            if (Directory.Exists(@"C:\ProgramData\Crunchy-DL"))
+            {
+                if (File.Exists(@"C:\ProgramData\Crunchy-DL\ffmpeg.exe"))
+                {
+                    if (File.Exists(@"C:\ProgramData\Crunchy-DL\youtube-dl.exe"))
+                    {
+                        if (Directory.Exists(@"C:\ProgramData\Crunchy-DL\login"))
+                        {
+                            InitializeComponent();
+                            if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
+                            {
+                                button_login.IsEnabled = false;
+                                button_logout.IsEnabled = true;
+                            }
+                            else
+                            {
+                                button_login.IsEnabled = true;
+                                button_logout.IsEnabled = false;
+                            }
+                        }
+                        else
+                        {
+                            if (File.Exists(@"C:\ProgramData\Crunchy-DL\login.zip"))
+                            {
+                                x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+                            }
+                            else
+                            {
+                                Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+                                x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+                        YTDL_update();
+                    }
+                }
+                else
+                {
+                    if (File.Exists(@"C:\ProgramData\Crunchy-DL\ffmpeg.zip"))
+                    {
+                        x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
+                    }
+                    else
+                    {
+                        Client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+                        x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
+                    }
+                }
+
+
+                
+            }
+            else
+            {
+                Install_All();
+            }
+        }
+
+        public void YTDL_update()
+        {
+            Process process = new Process();
+            // Configure the process using the StartInfo properties.
+            process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
+            process.StartInfo.Arguments = "-U";
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            process.Start();
+            process.WaitForExit(); // Waits here for the process to exit.
+        }
+
+        public void Install_All()
+        {
+            string ActualFolder = @"C:\ProgramData\Crunchy-DL";
+            WebClient Client = new WebClient();
+            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
+            MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+            Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
+            Client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+            Client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+            Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+
+            x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
+            x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+            MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             InitializeComponent();
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
             {
@@ -36,48 +126,9 @@ namespace CrunchyrollDownloader
             {
                 button_login.IsEnabled = true;
                 button_logout.IsEnabled = false;
-
             }
 
-
-            string ActualFolder = @"C:\ProgramData\Crunchy-DL";
-            WebClient Client = new WebClient();
-            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
-
-            if (Directory.Exists(@"C:\ProgramData\Crunchy-DL"))
-            {
-                if (Directory.Exists(@"C:\ProgramData\Crunchy-DL\login"))
-                {
-                    Process process = new Process();
-                    // Configure the process using the StartInfo properties.
-                    process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-                    process.StartInfo.Arguments = "-U";
-                    process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-                    process.Start();
-                    process.WaitForExit(); // Waits here for the process to exit.
-
-                }
-                else
-                {
-                    Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
-                    x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
-                Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-                Client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-                Client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
-                Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
-
-                x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
-                x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
-                MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
-
 
         private void button_Save_Click(object sender, RoutedEventArgs e)
         {
