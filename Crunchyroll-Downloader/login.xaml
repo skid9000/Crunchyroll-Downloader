@@ -16,6 +16,5 @@
         <Image x:Name="crunchy_png" Margin="10,10,10,190" Source="crunchy.png" Stretch="Fill"/>
         <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="110,100,0,0" VerticalAlignment="Top" Width="87"/>
         <Label x:Name="label1" Content="Password" HorizontalAlignment="Left" Margin="110,156,0,0" VerticalAlignment="Top" Width="101"/>
-
     </Grid>
 </Window>

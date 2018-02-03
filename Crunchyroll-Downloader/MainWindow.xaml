@@ -37,6 +37,5 @@
         <CheckBox x:Name="checkBox" Content="Subtitles" HorizontalAlignment="Left" Margin="66,161,0,0" VerticalAlignment="Top" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
         <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="231,204,0,0" VerticalAlignment="Top" Width="125" Height="39" Click="button_login_Click"/>
         <Button x:Name="button_logout" Content="Logout" HorizontalAlignment="Left" Margin="375,204,0,0" VerticalAlignment="Top" Width="125" Height="39" Click="button_logout_Click"/>
-
     </Grid>
 </Window>

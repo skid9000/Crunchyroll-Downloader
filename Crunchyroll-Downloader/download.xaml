@@ -12,12 +12,9 @@
             <ColumnDefinition Width="41*"/>
         </Grid.ColumnDefinitions>
         <Grid.Background>
-
             <ImageBrush ImageSource="fond.jpg"/>
         </Grid.Background>
         <Image x:Name="crunchy_png" Margin="35,10,36,58" Source="crunchy.png" Stretch="Fill" Grid.ColumnSpan="2"/>
         <ProgressBar x:Name="download_bar" HorizontalAlignment="Left" Height="25" Margin="10,107,0,0" VerticalAlignment="Top" Width="338" IsIndeterminate="True" Value="50" Cursor="None" Grid.ColumnSpan="2" />
-
-
     </Grid>
 </Window>

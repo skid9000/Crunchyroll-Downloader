@@ -13,23 +13,21 @@ namespace CrunchyrollDownloader
         public string Format { get; set; }
         public string SavePath { get; set; }
 
-
+        /// <summary>
+        /// Downloadings a file.
+        /// </summary>
         public void Downloading()
         {
             //MessageBox.Show("Everything is good, a pop up will tell you when the download is finished.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             var process = new Process();
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            process.StartInfo.CreateNoWindow = true;
-            process.EnableRaisingEvents = true;
 
             if (STState == "1")
             {
-                process.StartInfo.Arguments = "--write-sub --sub-lang " + Langue + " --sub-format " + Format + " --no-part -o " + '"' + SavePath + '"' + " --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt" + " " + Url;
-                Thread viewerThread = new Thread(delegate ()
+                process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                var viewerThread = new Thread(() =>
                 {
                     var download_window = new download();
                     download_window.Show();
@@ -48,11 +46,11 @@ namespace CrunchyrollDownloader
             }
             else
             {
-                process.StartInfo.Arguments = "--no-part -o " + '"' + SavePath + '"' + " --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt" + " " + Url;
+                process.StartInfo.Arguments = $"--no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
 
-                Thread viewerThread = new Thread(delegate ()
+                var viewerThread = new Thread(() =>
                 {
-                    download download_window = new download();
+                    var download_window = new download();
                     download_window.Show();
                     download_window.Activate();
                     download_window.Closed += (s, e) =>
