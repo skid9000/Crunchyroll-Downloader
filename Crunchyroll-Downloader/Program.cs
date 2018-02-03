@@ -29,7 +29,7 @@ namespace CrunchyrollDownloader
                 process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
                 var viewerThread = new Thread(() =>
                 {
-                    var download_window = new download();
+                    var download_window = new DownloadWindow();
                     download_window.Show();
                     download_window.Activate();
                     download_window.Closed += (s, e) =>
@@ -50,7 +50,7 @@ namespace CrunchyrollDownloader
 
                 var viewerThread = new Thread(() =>
                 {
-                    var download_window = new download();
+                    var download_window = new DownloadWindow();
                     download_window.Show();
                     download_window.Activate();
                     download_window.Closed += (s, e) =>

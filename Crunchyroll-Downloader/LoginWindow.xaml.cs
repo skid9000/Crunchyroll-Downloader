@@ -6,9 +6,9 @@ namespace CrunchyrollDownloader
     /// <summary>
     /// Interaction logic for login.xaml
     /// </summary>
-    public partial class login : Window
+    public partial class LoginWindow : Window
     {
-        public login()
+        public LoginWindow()
         {
             InitializeComponent();
         }

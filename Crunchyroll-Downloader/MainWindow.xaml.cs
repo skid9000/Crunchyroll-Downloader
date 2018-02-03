@@ -90,7 +90,7 @@ namespace CrunchyrollDownloader
         {
             var viewerThread = new Thread(() =>
             {
-                var download_window = new download();
+                var download_window = new DownloadWindow();
                 download_window.Show();
                 download_window.Activate();
                 download_window.Closed += (s, e) =>
@@ -241,7 +241,7 @@ namespace CrunchyrollDownloader
 
         private void button_login_Click(object sender, RoutedEventArgs e)
         {
-            var loginWindow = new login();
+            var loginWindow = new LoginWindow();
             loginWindow.Show();
             Close();
         }

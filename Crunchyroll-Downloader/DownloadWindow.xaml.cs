@@ -5,9 +5,9 @@ namespace CrunchyrollDownloader
     /// <summary>
     /// Interaction logic for download.xaml
     /// </summary>
-    public partial class download : Window
+    public partial class DownloadWindow : Window
     {
-        public download()
+        public DownloadWindow()
         {
             InitializeComponent();
             Closing += new System.ComponentModel.CancelEventHandler(Window_Closing);
