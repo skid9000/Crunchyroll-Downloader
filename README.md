@@ -1,7 +1,7 @@
 # Crunchyroll-Downloader
 A little GUI to download crap from crunchyroll.
 
-<a href="https://puush.tuto-craft.com/3X0D3l.png"><img src="https://puush.tuto-craft.com/3X0D3l.png"></a>
+<a href="https://puush.tuto-craft.com/3s3J5B.png"><img src="https://puush.tuto-craft.com/3s3J5B.png"></a>
 
 This tool require at least .NET FrameWork 4.6
 
