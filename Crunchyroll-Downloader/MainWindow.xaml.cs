@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -97,13 +98,24 @@ namespace CrunchyrollDownloader
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
             process.StartInfo.Arguments = "-U";
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
             process.WaitForExit(); // Waits here for the process to exit.
         }
 
         public void Install_All()
         {
+            Thread viewerThread = new Thread(delegate ()
+            {
+                download download_window = new download();
+                download_window.Show();
+                download_window.Activate();
+                download_window.Closed += (s, e) =>
+                Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
+                System.Windows.Threading.Dispatcher.Run();
+            });
+            viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
+            viewerThread.Start();
             string ActualFolder = @"C:\ProgramData\Crunchy-DL";
             WebClient Client = new WebClient();
             var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
@@ -115,7 +127,9 @@ namespace CrunchyrollDownloader
 
             x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
             x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+            YTDL_update();
             MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            viewerThread.Abort();
             InitializeComponent();
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
             {
@@ -133,17 +147,17 @@ namespace CrunchyrollDownloader
         private void button_Save_Click(object sender, RoutedEventArgs e)
         {
             // Create OpenFileDialog
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            var dlg = new Microsoft.Win32.SaveFileDialog();
 
             // Set filter for file extension and default file extension
             dlg.DefaultExt = ".mp4";
             dlg.Filter = "Such mp4, such wow | *.mp4";
 
             // Display OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = dlg.ShowDialog();
+            var result = dlg.ShowDialog();
 
             // Get the selected file name and display in a TextBox
-            if (result == true)
+            if (result ?? false)
             {
                 // Open document
                 string filename = dlg.FileName;
@@ -219,7 +233,10 @@ namespace CrunchyrollDownloader
                 Machin.STState = "1";
             }
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
+            {
+                YTDL_update();
                 Machin.Downloading();
+            }
             else
             {
                 MessageBox.Show("Please login.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -244,7 +261,7 @@ namespace CrunchyrollDownloader
         {
             login login_window = new login();
             login_window.Show();
-            this.Close();
+            Close();
         }
 
         private void button_logout_Click(object sender, RoutedEventArgs e)
