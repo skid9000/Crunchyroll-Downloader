@@ -99,6 +99,7 @@
     <Compile Include="download.xaml.cs">
       <DependentUpon>download.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>

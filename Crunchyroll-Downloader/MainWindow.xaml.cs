@@ -55,7 +55,7 @@ namespace CrunchyrollDownloader
                         else
                         {
                             client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-                            YTDL_update();
+                            UpdateYTDL();
                         }
                     }
                     else
@@ -71,11 +71,11 @@ namespace CrunchyrollDownloader
 
                 }
                 else
-                    Install_All();
+                    InstallAll();
             }
         }
 
-        public void YTDL_update()
+        private void UpdateYTDL()
         {
             var process = new Process();
             // Configure the process using the StartInfo properties.
@@ -86,7 +86,7 @@ namespace CrunchyrollDownloader
             process.WaitForExit(); // Waits here for the process to exit.
         }
 
-        public void Install_All()
+        private void InstallAll()
         {
             var viewerThread = new Thread(() =>
             {
@@ -111,7 +111,7 @@ namespace CrunchyrollDownloader
 
                 zip.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
                 zip.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
-                YTDL_update();
+                UpdateYTDL();
                 MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 viewerThread.Abort();
                 InitializeComponent();
@@ -132,7 +132,7 @@ namespace CrunchyrollDownloader
         private void button_Save_Click(object sender, RoutedEventArgs e)
         {
             // Create OpenFileDialog
-            var dlg = new SaveFileDialog
+            var dialog = new SaveFileDialog
             {
                 // Set filter for file extension and default file extension
                 DefaultExt = ".mp4",
@@ -140,13 +140,13 @@ namespace CrunchyrollDownloader
             };
 
             // Display OpenFileDialog by calling ShowDialog method
-            var result = dlg.ShowDialog();
+            var result = dialog.ShowDialog();
 
             // Get the selected file name and display in a TextBox
             if (result ?? false)
             {
                 // Open document
-                string filename = dlg.FileName;
+                string filename = dialog.FileName;
                 save_TextBox.Text = filename;
             }
         }
@@ -221,7 +221,7 @@ namespace CrunchyrollDownloader
             }
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
             {
-                YTDL_update();
+                UpdateYTDL();
                 machin.Downloading();
             }
             else
@@ -231,7 +231,7 @@ namespace CrunchyrollDownloader
         private void aboutButton_Click(object sender, RoutedEventArgs e) =>
             MessageBox.Show("All informations on github. https://github.com/skid9000/Crunchyroll-Downloader", "About", MessageBoxButton.OK);
 
-        void CheckBoxChanged()
+        private void CheckBoxChanged()
         {
             comboBox.IsEnabled = checkBox.IsChecked.Value;
             comboBox_Copy.IsEnabled = checkBox.IsChecked.Value;

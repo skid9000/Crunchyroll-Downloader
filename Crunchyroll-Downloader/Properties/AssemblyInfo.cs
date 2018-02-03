@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -12,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tuto-Craft")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Tuto-Craft Corporation Copyright ©  2018")]
+[assembly: AssemblyCopyright("Tuto-Craft Corporation Copyright © 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
