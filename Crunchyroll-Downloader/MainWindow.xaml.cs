@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Microsoft.Win32;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace CrunchyrollDownloader
 {
@@ -82,18 +84,14 @@ namespace CrunchyrollDownloader
                     }
                 }
 
-
-                
             }
             else
-            {
                 Install_All();
-            }
         }
 
         public void YTDL_update()
         {
-            Process process = new Process();
+            var process = new Process();
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
             process.StartInfo.Arguments = "-U";
@@ -104,46 +102,47 @@ namespace CrunchyrollDownloader
 
         public void Install_All()
         {
-            string ActualFolder = @"C:\ProgramData\Crunchy-DL";
-            WebClient Client = new WebClient();
-            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
-            MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
-            Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-            Client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-            Client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
-            Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+            var actualFolder = @"C:\ProgramData\Crunchy-DL";
+            using(var client = new WebClient()){
+                var zip = new FastZip();
+                MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+                Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
+                client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+                client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+                client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
 
-            x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
-            x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
-            MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            InitializeComponent();
-            if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
-            {
-                button_login.IsEnabled = false;
-                button_logout.IsEnabled = true;
+                zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
+                zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
+                MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                InitializeComponent();
+                if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
+                {
+                    button_login.IsEnabled = false;
+                    button_logout.IsEnabled = true;
+                }
+                else
+                {
+                    button_login.IsEnabled = true;
+                    button_logout.IsEnabled = false;
+                }
             }
-            else
-            {
-                button_login.IsEnabled = true;
-                button_logout.IsEnabled = false;
-            }
-
         }
 
         private void button_Save_Click(object sender, RoutedEventArgs e)
         {
             // Create OpenFileDialog
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-
-            // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".mp4";
-            dlg.Filter = "Such mp4, such wow | *.mp4";
+            var dlg = new SaveFileDialog
+            {
+                // Set filter for file extension and default file extension
+                DefaultExt = ".mp4",
+                Filter = "Such mp4, such wow | *.mp4"
+            };
 
             // Display OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = dlg.ShowDialog();
+            var result = dlg.ShowDialog();
 
             // Get the selected file name and display in a TextBox
-            if (result == true)
+            if (result ?? false)
             {
                 // Open document
                 string filename = dlg.FileName;
@@ -153,73 +152,74 @@ namespace CrunchyrollDownloader
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Program Machin = new Program();
+            var machin = new Program();
 
             if (comboBox.Text == "Français (France)")
             {
-                Machin.langue = "frFR";
+                machin.Langue = "frFR";
             }
             else if (comboBox.Text == "English (US)")
             {
-                Machin.langue = "enUS";
+                machin.Langue = "enUS";
             }
             else if (comboBox.Text == "Español")
             {
-                Machin.langue = "esES";
+                machin.Langue = "esES";
             }
             else if (comboBox.Text == "Español (España)")
             {
-                Machin.langue = "esLA";
+                machin.Langue = "esLA";
             }
             else if (comboBox.Text == "Português (Brasil)")
             {
-                Machin.langue = "ptBR";
+                machin.Langue = "ptBR";
             }
             else if (comboBox.Text == "العربية")
             {
-                Machin.langue = "arME";
+                machin.Langue = "arME";
             }
             else if (comboBox.Text == "Italiano")
             {
-                Machin.langue = "itIT";
+                machin.Langue = "itIT";
             }
             else if (comboBox.Text == "Deutsch")
             {
-                Machin.langue = "deDE";
+                machin.Langue = "deDE";
             }
 
-            Machin.format = comboBox_Copy.Text;
-            Machin.url = urlBox.Text;
-            Machin.savePath = save_TextBox.Text;
-            Machin.STState = "0";
+            machin.Format = comboBox_Copy.Text;
+            machin.Url = urlBox.Text;
+            machin.SavePath = save_TextBox.Text;
+            machin.STState = "0";
 
-            if (String.IsNullOrEmpty(Machin.url))
+            if (String.IsNullOrEmpty(machin.Url))
             {
                 MessageBox.Show("Please, put a URL.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            if (String.IsNullOrEmpty(Machin.savePath))
+            if (String.IsNullOrEmpty(machin.SavePath))
             {
                 MessageBox.Show("Please, put a save path.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
-            if (checkBox.IsChecked.Value == true) {
+            if (checkBox.IsChecked ?? false)
+            {
 
-                if (String.IsNullOrEmpty(Machin.langue))
+                if (String.IsNullOrEmpty(machin.Langue))
                 {
                     MessageBox.Show("Please, choose a language.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
-                if (String.IsNullOrEmpty(Machin.format))
+                if (String.IsNullOrEmpty(machin.Format))
                 {
                     MessageBox.Show("Please, choose a sub format.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
-                Machin.STState = "1";
+                machin.STState = "1";
             }
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
-                Machin.Downloading();
+                machin.Downloading();
             else
             {
                 MessageBox.Show("Please login.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -254,5 +254,4 @@ namespace CrunchyrollDownloader
             button_logout.IsEnabled = false;
         }
     }
-    }
-
+}

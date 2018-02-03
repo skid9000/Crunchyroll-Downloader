@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CrunchyrollDownloader
 {
@@ -28,22 +15,21 @@ namespace CrunchyrollDownloader
 
         private void button_login_Click(object sender, RoutedEventArgs e)
         {
-            string username = textBox_username.Text;
-            string password = textBox_password.Password;
+            var username = textBox_username.Text;
+            var password = textBox_password.Password;
 
-            Process process = new Process();
+            var process = new Process();
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\login\login.exe";
+            process.StartInfo.Arguments = $"{username} {password}";
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            process.Start();
+            process.WaitForExit();// Waits here for the process to exit.
 
-                process.StartInfo.Arguments = username + " " + password;
-                process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-                process.Start();
-                process.WaitForExit();// Waits here for the process to exit.
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
 
-            MainWindow main_window = new MainWindow();
-            main_window.Show();
-
-            this.Close();
-            }
+            Close();
+        }
     }
 }
