@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrunchyrollDownloader"
         mc:Ignorable="d"
-        Title="Log-in" Height="300" Width="300" ResizeMode="NoResize" Icon="crlogo.ico">
+        Title="Log-in" Height="300" Width="300" ResizeMode="NoResize" Icon="crunchylogo.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
