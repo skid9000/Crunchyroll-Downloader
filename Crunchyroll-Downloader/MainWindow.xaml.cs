@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,27 +27,55 @@ namespace CrunchyrollDownloader
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void button_Cookie_Click(object sender, RoutedEventArgs e)
-        {
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.Filter = "Crunchyroll Cookie Text File (*.txt)|*.txt";
-
-
-            // Display OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Get the selected file name and display in a TextBox
-            if (result == true)
+            if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
             {
-                // Open document
-                string filename = dlg.FileName;
-                cookie_TextBox.Text = filename;
+                button_login.IsEnabled = false;
+                button_logout.IsEnabled = true;
+            }
+            else
+            {
+                button_login.IsEnabled = true;
+                button_logout.IsEnabled = false;
+
             }
 
 
+            string ActualFolder = @"C:\ProgramData\Crunchy-DL";
+            WebClient Client = new WebClient();
+            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
+
+            if (Directory.Exists(@"C:\ProgramData\Crunchy-DL"))
+            {
+                if (Directory.Exists(@"C:\ProgramData\Crunchy-DL\login"))
+                {
+                    Process process = new Process();
+                    // Configure the process using the StartInfo properties.
+                    process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
+                    process.StartInfo.Arguments = "-U";
+                    process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+                    process.Start();
+                    process.WaitForExit(); // Waits here for the process to exit.
+
+                }
+                else
+                {
+                    Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+                    x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+                Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
+                Client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+                Client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+                Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+
+                x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
+                x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+                MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
 
@@ -107,7 +138,6 @@ namespace CrunchyrollDownloader
             }
 
             Machin.format = comboBox_Copy.Text;
-            Machin.cookie = cookie_TextBox.Text;
             Machin.url = urlBox.Text;
             Machin.savePath = save_TextBox.Text;
             Machin.STState = "0";
@@ -120,11 +150,6 @@ namespace CrunchyrollDownloader
             if (String.IsNullOrEmpty(Machin.savePath))
             {
                 MessageBox.Show("Please, put a save path.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            if (String.IsNullOrEmpty(Machin.cookie))
-            {
-                MessageBox.Show("Please, put a cookie file.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
@@ -142,11 +167,13 @@ namespace CrunchyrollDownloader
                 }
                 Machin.STState = "1";
             }
-
-            Machin.FirstStep();
-
-
-
+            if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
+                Machin.Downloading();
+            else
+            {
+                MessageBox.Show("Please login.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
         }
 
         private void aboutButton_Click(object sender, RoutedEventArgs e)
@@ -161,6 +188,20 @@ namespace CrunchyrollDownloader
         }
         private void checkBox_Checked(object sender, RoutedEventArgs e) => CheckBoxChanged();
         private void checkBox_Unchecked(object sender, RoutedEventArgs e) => CheckBoxChanged();
+
+        private void button_login_Click(object sender, RoutedEventArgs e)
+        {
+            login login_window = new login();
+            login_window.Show();
+            this.Close();
+        }
+
+        private void button_logout_Click(object sender, RoutedEventArgs e)
+        {
+            File.Delete(@"C:\ProgramData\Crunchy-DL\cookies.txt");
+            button_login.IsEnabled = true;
+            button_logout.IsEnabled = false;
+        }
     }
     }
 

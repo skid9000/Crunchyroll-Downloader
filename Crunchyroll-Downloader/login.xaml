@@ -1,0 +1,21 @@
+﻿<Window x:Class="CrunchyrollDownloader.login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CrunchyrollDownloader"
+        mc:Ignorable="d"
+        Title="Log-in" Height="300" Width="300" ResizeMode="NoResize" Icon="crlogo.ico">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="fond.jpg"/>
+        </Grid.Background>
+        <Button x:Name="button_login" Content="Login" Margin="10,225,10,10" Click="button_login_Click"/>
+        <TextBox x:Name="textBox_username" Height="25" Margin="10,131,10,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="textBox_password" Height="25" Margin="10,187,10,0" VerticalAlignment="Top"/>
+        <Image x:Name="crunchy_png" Margin="10,10,10,190" Source="crunchy.png" Stretch="Fill"/>
+        <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="110,100,0,0" VerticalAlignment="Top" Width="87"/>
+        <Label x:Name="label1" Content="Password" HorizontalAlignment="Left" Margin="110,156,0,0" VerticalAlignment="Top" Width="101"/>
+
+    </Grid>
+</Window>
