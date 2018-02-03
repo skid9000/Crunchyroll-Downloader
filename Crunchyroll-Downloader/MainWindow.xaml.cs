@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -95,37 +96,50 @@ namespace CrunchyrollDownloader
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
             process.StartInfo.Arguments = "-U";
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
             process.WaitForExit(); // Waits here for the process to exit.
         }
 
         public void Install_All()
         {
-            var actualFolder = @"C:\ProgramData\Crunchy-DL";
-            using(var client = new WebClient()){
-                var zip = new FastZip();
-                MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
-                Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-                client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-                client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
-                client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+            Thread viewerThread = new Thread(delegate ()
+            {
+                download download_window = new download();
+                download_window.Show();
+                download_window.Activate();
+                download_window.Closed += (s, e) =>
+                Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
+                System.Windows.Threading.Dispatcher.Run();
+            });
+            viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
+            viewerThread.Start();
+            string ActualFolder = @"C:\ProgramData\Crunchy-DL";
+            WebClient Client = new WebClient();
+            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
+            MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+            Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
+            Client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+            Client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+            Client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
 
-                zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
-                zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
-                MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                InitializeComponent();
-                if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
-                {
-                    button_login.IsEnabled = false;
-                    button_logout.IsEnabled = true;
-                }
-                else
-                {
-                    button_login.IsEnabled = true;
-                    button_logout.IsEnabled = false;
-                }
+            x.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
+            x.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+            YTDL_update();
+            MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            viewerThread.Abort();
+            InitializeComponent();
+            if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
+            {
+                button_login.IsEnabled = false;
+                button_logout.IsEnabled = true;
             }
+            else
+            {
+                button_login.IsEnabled = true;
+                button_logout.IsEnabled = false;
+            }
+
         }
 
         private void button_Save_Click(object sender, RoutedEventArgs e)
@@ -219,7 +233,10 @@ namespace CrunchyrollDownloader
                 machin.STState = "1";
             }
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
-                machin.Downloading();
+            {
+                YTDL_update();
+                Machin.Downloading();
+            }
             else
             {
                 MessageBox.Show("Please login.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -244,7 +261,7 @@ namespace CrunchyrollDownloader
         {
             login login_window = new login();
             login_window.Show();
-            this.Close();
+            Close();
         }
 
         private void button_logout_Click(object sender, RoutedEventArgs e)
