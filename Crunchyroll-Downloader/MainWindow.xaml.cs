@@ -144,11 +144,7 @@ namespace CrunchyrollDownloader
 
             // Get the selected file name and display in a TextBox
             if (result ?? false)
-            {
-                // Open document
-                string filename = dialog.FileName;
-                save_TextBox.Text = filename;
-            }
+                save_TextBox.Text = dialog.FileName; // Open document
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -156,37 +152,21 @@ namespace CrunchyrollDownloader
             var machin = new Program();
 
             if (comboBox.Text == "Français (France)")
-            {
                 machin.Langue = "frFR";
-            }
             else if (comboBox.Text == "English (US)")
-            {
                 machin.Langue = "enUS";
-            }
             else if (comboBox.Text == "Español")
-            {
                 machin.Langue = "esES";
-            }
             else if (comboBox.Text == "Español (España)")
-            {
                 machin.Langue = "esLA";
-            }
             else if (comboBox.Text == "Português (Brasil)")
-            {
                 machin.Langue = "ptBR";
-            }
             else if (comboBox.Text == "العربية")
-            {
                 machin.Langue = "arME";
-            }
             else if (comboBox.Text == "Italiano")
-            {
                 machin.Langue = "itIT";
-            }
             else if (comboBox.Text == "Deutsch")
-            {
                 machin.Langue = "deDE";
-            }
 
             machin.Format = comboBox_Copy.Text;
             machin.Url = urlBox.Text;
