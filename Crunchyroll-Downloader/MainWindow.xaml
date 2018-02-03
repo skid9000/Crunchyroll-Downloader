@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" x:Name="label" Content="URL" Foreground="White" VerticalAlignment="Center"/>
+            <Label Grid.Column="0" x:Name="label" Content="URL" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox Grid.Column="1" x:Name="urlBox" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
         <!-- Subtitle part -->
