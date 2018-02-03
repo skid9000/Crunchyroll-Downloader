@@ -31,7 +31,7 @@ namespace CrunchyrollDownloader
         {
             string ActualFolder = @"C:\ProgramData\Crunchy-DL";
             WebClient Client = new WebClient();
-            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
+            var x = new FastZip();
 
             if (Directory.Exists(@"C:\ProgramData\Crunchy-DL"))
             {
@@ -110,13 +110,13 @@ namespace CrunchyrollDownloader
                 download_window.Activate();
                 download_window.Closed += (s, e) =>
                 Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
-                System.Windows.Threading.Dispatcher.Run();
+                Dispatcher.Run();
             });
             viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
             viewerThread.Start();
             string ActualFolder = @"C:\ProgramData\Crunchy-DL";
             WebClient Client = new WebClient();
-            var x = new ICSharpCode.SharpZipLib.Zip.FastZip();
+            var x = new FastZip();
             MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
             Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
             Client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
@@ -235,7 +235,7 @@ namespace CrunchyrollDownloader
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
             {
                 YTDL_update();
-                Machin.Downloading();
+                machin.Downloading();
             }
             else
             {

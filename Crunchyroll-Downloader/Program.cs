@@ -1,9 +1,6 @@
 ﻿using System.Diagnostics;
-using System.IO;
-using System.Net;
-using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Core;
 using System.Threading;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace CrunchyrollDownloader
@@ -19,9 +16,6 @@ namespace CrunchyrollDownloader
 
         public void Downloading()
         {
-
-
-
             //MessageBox.Show("Everything is good, a pop up will tell you when the download is finished.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             var process = new Process();
             // Configure the process using the StartInfo properties.
@@ -32,18 +26,17 @@ namespace CrunchyrollDownloader
             process.StartInfo.CreateNoWindow = true;
             process.EnableRaisingEvents = true;
 
-
             if (STState == "1")
             {
-                process.StartInfo.Arguments = "--write-sub --sub-lang " + langue + " --sub-format " + format + " --no-part -o " + '"' + savePath + '"' + " --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt" + " " + url;
+                process.StartInfo.Arguments = "--write-sub --sub-lang " + Langue + " --sub-format " + Format + " --no-part -o " + '"' + SavePath + '"' + " --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt" + " " + Url;
                 Thread viewerThread = new Thread(delegate ()
                 {
-                    download download_window = new download();
+                    var download_window = new download();
                     download_window.Show();
                     download_window.Activate();
                     download_window.Closed += (s, e) =>
                     Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
-                    System.Windows.Threading.Dispatcher.Run();
+                    Dispatcher.Run();
                 });
                 viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
                 viewerThread.Start();
@@ -55,7 +48,7 @@ namespace CrunchyrollDownloader
             }
             else
             {
-                process.StartInfo.Arguments = "--no-part -o " + '"' + savePath + '"' + " --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt" + " " + url;
+                process.StartInfo.Arguments = "--no-part -o " + '"' + SavePath + '"' + " --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt" + " " + Url;
 
                 Thread viewerThread = new Thread(delegate ()
                 {
@@ -64,7 +57,7 @@ namespace CrunchyrollDownloader
                     download_window.Activate();
                     download_window.Closed += (s, e) =>
                     Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
-                    System.Windows.Threading.Dispatcher.Run();
+                    Dispatcher.Run();
                 });
                 viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
                 viewerThread.Start();
@@ -73,7 +66,6 @@ namespace CrunchyrollDownloader
                 process.WaitForExit();// Waits here for the process to exit.
                 viewerThread.Abort();
                 MessageBox.Show("Download finished !", "Success !", MessageBoxButton.OK, MessageBoxImage.Information);
-
             }
         }
     }
