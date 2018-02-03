@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="Downloading ..." Height="168.75" Width="366.477" Icon="crlogo.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" IsTabStop="True">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="49*"/>
-            <ColumnDefinition Width="41*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="fond.jpg"/>
         </Grid.Background>
-        <Image x:Name="crunchy_png" Margin="35,10,36,58" Source="crunchy.png" Stretch="Fill" Grid.ColumnSpan="2"/>
-        <ProgressBar x:Name="download_bar" HorizontalAlignment="Left" Height="25" Margin="10,107,0,0" VerticalAlignment="Top" Width="338" IsIndeterminate="True" Value="50" Cursor="None" Grid.ColumnSpan="2" />
+        <Image x:Name="crunchy_png" Margin="10,10,10,10" Source="crunchy.png" Grid.Row="0"/>
+        <ProgressBar x:Name="download_bar" Height="25" Margin="10,10,10,10" IsIndeterminate="True" Value="50" Cursor="None" Grid.Row="1" HorizontalContentAlignment="Stretch" />
     </Grid>
 </Window>

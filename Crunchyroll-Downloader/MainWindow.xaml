@@ -6,36 +6,72 @@
         xmlns:local="clr-namespace:CrunchyrollDownloader"
         mc:Ignorable="d"
         Title="Crunchyroll Downloader" Height="350" Width="525" ResizeMode="CanMinimize">
-    <Grid Margin="0,0,0,-2">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="fond.jpg"/>
         </Grid.Background>
-        <Button x:Name="button" Content="Start" HorizontalAlignment="Left" Margin="10,279,0,0" Width="384" Click="button_Click" Height="34" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="12,186,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-            <ComboBoxItem Content="Français (France)"/>
-            <ComboBoxItem Content="English (US)"/>
-            <ComboBoxItem Content="Español"/>
-            <ComboBoxItem Content="Español (España)"/>
-            <ComboBoxItem Content="Português (Brasil)"/>
-            <ComboBoxItem Content="العربية"/>
-            <ComboBoxItem Content="Italiano"/>
-            <ComboBoxItem Content="Deutsch"/>
-        </ComboBox>
-        <ComboBox x:Name="comboBox_Copy" HorizontalAlignment="Left" Margin="12,215,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
-            <ComboBoxItem Content="srt"/>
-            <ComboBoxItem Content="ass"/>
-        </ComboBox>
-        <Label x:Name="label1" Content="Language" HorizontalAlignment="Left" Margin="137,188,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label1_Copy" Content="Format" HorizontalAlignment="Left" Margin="137,213,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="save_TextBox" HorizontalAlignment="Left" Height="23" Margin="311,169,0,0" VerticalAlignment="Top" Width="189" />
-        <Button x:Name="button_Save" Content="Browse" HorizontalAlignment="Left" Margin="231,169,0,0" VerticalAlignment="Top" Width="75" Click="button_Save_Click"/>
-        <Label x:Name="label1_Copy2" Content="Save Path" HorizontalAlignment="Left" Margin="311,143,0,0" VerticalAlignment="Top"/>
-        <Image x:Name="crunchy_png" Margin="35,18,36,217" Source="crunchy.png" Stretch="Fill"/>
-        <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="399,279,0,0" VerticalAlignment="Top" Width="108" Height="34" IsCancel="True" Click="aboutButton_Click"/>
-        <TextBox x:Name="urlBox" Margin="10,251,0,0" HorizontalAlignment="Left" Width="452" Height="23" VerticalAlignment="Top"/>
-        <Label x:Name="label" Content="URL" HorizontalAlignment="Left" Margin="462,248,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="checkBox" Content="Subtitles" HorizontalAlignment="Left" Margin="66,161,0,0" VerticalAlignment="Top" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
-        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="231,204,0,0" VerticalAlignment="Top" Width="125" Height="39" Click="button_login_Click"/>
-        <Button x:Name="button_logout" Content="Logout" HorizontalAlignment="Left" Margin="375,204,0,0" VerticalAlignment="Top" Width="125" Height="39" Click="button_logout_Click"/>
+        <Image Grid.Row="0" x:Name="crunchy_png" Margin="10,10,10,0" Source="crunchy.png"/>
+        <!-- Common buttons -->
+        <WrapPanel Grid.Row="1" FlowDirection="RightToLeft">
+            <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" IsCancel="True" Click="aboutButton_Click"/>
+            <Button x:Name="button_logout" Content="Logout" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_logout_Click"/>
+            <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_login_Click"/>
+        </WrapPanel>
+        <!-- URL part -->
+        <Grid Grid.Row="2" Margin="5,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" x:Name="label" Content="URL" Foreground="White" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" x:Name="urlBox" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        </Grid>
+        <!-- Subtitle part -->
+        <Grid Grid.Row="3" Margin="5,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="0" x:Name="checkBox" Foreground="White" Content="Subtitles" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
+            <Label Grid.Column="1" x:Name="label1" Content="Language" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <ComboBox Grid.Column="2" x:Name="comboBox" VerticalAlignment="Center" IsEnabled="False">
+                <ComboBoxItem Content="Français (France)"/>
+                <ComboBoxItem Content="English (US)"/>
+                <ComboBoxItem Content="Español"/>
+                <ComboBoxItem Content="Español (España)"/>
+                <ComboBoxItem Content="Português (Brasil)"/>
+                <ComboBoxItem Content="العربية"/>
+                <ComboBoxItem Content="Italiano"/>
+                <ComboBoxItem Content="Deutsch"/>
+            </ComboBox>
+            <Label Grid.Column="3" x:Name="label1_Copy" Content="Format" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <ComboBox Grid.Column="4" x:Name="comboBox_Copy" VerticalAlignment="Center" IsEnabled="False">
+                <ComboBoxItem Content="srt"/>
+                <ComboBoxItem Content="ass"/>
+            </ComboBox>
+        </Grid>
+        <!-- Path part -->
+        <Grid Grid.Row="4" Margin="5,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" x:Name="label1_Copy2" Content="Save Path" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="White"/>
+            <TextBox Grid.Column="1" x:Name="save_TextBox" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <Button Grid.Column="2" x:Name="button_Save" Content="Browse" Height="25" Margin="5,0,0,0" Click="button_Save_Click"/>
+        </Grid>
+        <Button Grid.Row="5" x:Name="button" Content="Start" Margin="5,5,5,5" Click="button_Click" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>
