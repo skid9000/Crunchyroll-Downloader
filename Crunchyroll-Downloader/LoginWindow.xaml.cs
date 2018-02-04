@@ -11,6 +11,7 @@ namespace CrunchyrollDownloader
         public LoginWindow()
         {
             InitializeComponent();
+            Closing += new System.ComponentModel.CancelEventHandler(Window_Closing);
         }
 
         private void button_login_Click(object sender, RoutedEventArgs e)
@@ -26,6 +27,15 @@ namespace CrunchyrollDownloader
             process.Start();
             process.WaitForExit();// Waits here for the process to exit.
 
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            Close();
+        }
+        void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => e.Cancel = true;
+
+        private void button_cancel_Click(object sender, RoutedEventArgs e)
+        {
             var mainWindow = new MainWindow();
             mainWindow.Show();
 
