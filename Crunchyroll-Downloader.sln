@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Crunchyroll-Downloader\Main.csproj", "{81207A42-BF40-4C64-878B-8E7669BBC5E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crunchyroll-Downloader", "Crunchyroll-Downloader\Crunchyroll-Downloader.csproj", "{BFD5A544-E85E-46E7-B6DC-A8900240DE1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{81207A42-BF40-4C64-878B-8E7669BBC5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81207A42-BF40-4C64-878B-8E7669BBC5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81207A42-BF40-4C64-878B-8E7669BBC5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81207A42-BF40-4C64-878B-8E7669BBC5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFD5A544-E85E-46E7-B6DC-A8900240DE1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD5A544-E85E-46E7-B6DC-A8900240DE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD5A544-E85E-46E7-B6DC-A8900240DE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD5A544-E85E-46E7-B6DC-A8900240DE1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
