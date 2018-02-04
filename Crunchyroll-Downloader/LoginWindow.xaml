@@ -23,7 +23,6 @@
         <TextBox x:Name="textBox_username" Grid.Row="2" Height="25" Margin="10,0,10,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
         <Label x:Name="label1" Content="Password" Foreground="White" Grid.Row="3" Margin="10,0,10,0" VerticalAlignment="Center" Width="101" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <PasswordBox x:Name="textBox_password" Grid.Row="4" Height="25" Margin="10,0,10,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="button_cancel" Grid.Row="5" Content="Cancel" Margin="10,10,159,10" Click="button_cancel_Click"/>
-        <Button x:Name="button_login" Grid.Row="5" Content="Login" Margin="159,10,10,10" Click="button_login_Click"/>
+        <Button x:Name="button_login" Grid.Row="5" Content="Login" Margin="10,10,10,10" Click="button_login_Click"/>
     </Grid>
 </Window>

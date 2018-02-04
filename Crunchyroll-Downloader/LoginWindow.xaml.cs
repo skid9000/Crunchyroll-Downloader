@@ -32,14 +32,14 @@ namespace CrunchyrollDownloader
 
             Close();
         }
-        void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => e.Cancel = true;
 
-        private void button_cancel_Click(object sender, RoutedEventArgs e)
+        void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var mainWindow = new MainWindow();
             mainWindow.Show();
-
-            Close();
         }
+
+
     }
+
 }
