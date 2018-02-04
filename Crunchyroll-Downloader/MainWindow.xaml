@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CrunchyrollDownloader"
         mc:Ignorable="d"
-        Title="Crunchyroll Downloader" Height="350" Width="525" ResizeMode="CanMinimize" Icon="crunchylogo.ico">
+        Title="Crunchyroll Downloader" Height="350" Width="525" ResizeMode="CanMinimize" Icon="logo.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
