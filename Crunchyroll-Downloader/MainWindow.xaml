@@ -69,7 +69,7 @@
                 <ColumnDefinition Width="80" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" x:Name="label1_Copy2" Content="Save Path" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="White"/>
-            <TextBox Grid.Column="1" x:Name="save_TextBox" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBox Grid.Column="1" x:Name="save_TextBox" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
             <Button Grid.Column="2" x:Name="button_Save" Content="Browse" Height="25" Margin="5,0,0,0" Click="button_Save_Click"/>
         </Grid>
         <Button Grid.Row="5" x:Name="button" Content="Start" Margin="5,5,5,5" Click="button_Click" VerticalContentAlignment="Center"/>

@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Threading;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Win32;
+using System;
 
 namespace CrunchyrollDownloader
 {
@@ -29,26 +30,36 @@ namespace CrunchyrollDownloader
                         {
                             if (Directory.Exists(@"C:\ProgramData\Crunchy-DL\login"))
                             {
-                                InitializeComponent();
-                                if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
+                                if (File.Exists(@"C:\ProgramData\Crunchy-DL\login\v1.2.3.txt"))
                                 {
-                                    button_login.IsEnabled = false;
-                                    button_logout.IsEnabled = true;
+                                    InitializeComponent();
+                                    CheckCookie();
                                 }
                                 else
                                 {
-                                    button_login.IsEnabled = true;
-                                    button_logout.IsEnabled = false;
+                                    File.Delete(@"C:\ProgramData\Crunchy-DL\login.zip");
+                                    Directory.Delete(@"C:\ProgramData\Crunchy-DL\login", true);
+                                    client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+                                    zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
+                                    InitializeComponent();
+                                    CheckCookie();
                                 }
+                              
                             }
                             else
                             {
                                 if (File.Exists(@"C:\ProgramData\Crunchy-DL\login.zip"))
+                                {
                                     zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
+                                    InitializeComponent();
+                                    CheckCookie();
+                                }
                                 else
                                 {
                                     client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
                                     zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
+                                    InitializeComponent();
+                                    CheckCookie();
                                 }
                             }
                         }
@@ -56,22 +67,44 @@ namespace CrunchyrollDownloader
                         {
                             client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.01.27/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
                             UpdateYTDL();
+                            InitializeComponent();
+                            CheckCookie();
                         }
                     }
                     else
                     {
                         if (File.Exists(@"C:\ProgramData\Crunchy-DL\ffmpeg.zip"))
+                        {
                             zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
+                            InitializeComponent();
+                            CheckCookie();
+                        }
                         else
                         {
                             client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
                             zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
+                            InitializeComponent();
+                            CheckCookie();
                         }
                     }
 
                 }
                 else
                     InstallAll();
+            }
+        }
+
+        private void CheckCookie()
+        {
+            if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
+            {
+                button_login.IsEnabled = false;
+                button_logout.IsEnabled = true;
+            }
+            else
+            {
+                button_login.IsEnabled = true;
+                button_logout.IsEnabled = false;
             }
         }
 
@@ -115,17 +148,7 @@ namespace CrunchyrollDownloader
                 MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 viewerThread.Abort();
                 InitializeComponent();
-
-                if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
-                {
-                    button_login.IsEnabled = false;
-                    button_logout.IsEnabled = true;
-                }
-                else
-                {
-                    button_login.IsEnabled = true;
-                    button_logout.IsEnabled = false;
-                }
+                CheckCookie();
             }
         }
 
@@ -178,6 +201,15 @@ namespace CrunchyrollDownloader
                 MessageBox.Show("Please, put a URL.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
+            Uri uri = null;
+
+            if (!Uri.TryCreate(machin.Url, UriKind.Absolute, out uri) || null == uri)
+            {
+                //Invalid URL
+                MessageBox.Show("Please, put a valid URL.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
             if (string.IsNullOrEmpty(machin.SavePath))
             {
                 MessageBox.Show("Please, put a save path.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
