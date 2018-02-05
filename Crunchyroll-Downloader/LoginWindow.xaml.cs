@@ -18,11 +18,13 @@ namespace CrunchyrollDownloader
         {
             var username = textBox_username.Text;
             var password = textBox_password.Password;
+
             if (string.IsNullOrEmpty(username))
             {
                 MessageBox.Show("Please, put your username.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
+
             if (string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please, put your password.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -45,8 +47,5 @@ namespace CrunchyrollDownloader
             var mainWindow = new MainWindow();
             mainWindow.Show();
         }
-
-
     }
-
 }

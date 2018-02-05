@@ -18,7 +18,6 @@ namespace CrunchyrollDownloader
         /// </summary>
         public void Downloading()
         {
-            //MessageBox.Show("Everything is good, a pop up will tell you when the download is finished.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             var process = new Process();
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";

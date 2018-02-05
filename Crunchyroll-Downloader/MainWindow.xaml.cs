@@ -132,7 +132,7 @@ namespace CrunchyrollDownloader
             });
             viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
             viewerThread.Start();
-            string ActualFolder = @"C:\ProgramData\Crunchy-DL";
+            var actualFolder = @"C:\ProgramData\Crunchy-DL";
             using (var client = new WebClient())
             {
                 var zip = new FastZip();
@@ -142,8 +142,8 @@ namespace CrunchyrollDownloader
                 client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
                 client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
 
-                zip.ExtractZip(ActualFolder + @"\ffmpeg.zip", ActualFolder, "");
-                zip.ExtractZip(ActualFolder + @"\login.zip", ActualFolder, "");
+                zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
+                zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
                 UpdateYTDL();
                 MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 viewerThread.Abort();
@@ -201,9 +201,8 @@ namespace CrunchyrollDownloader
                 MessageBox.Show("Please, put a URL.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
-            Uri uri = null;
 
-            if (!Uri.TryCreate(machin.Url, UriKind.Absolute, out uri) || null == uri)
+            if (!Uri.TryCreate(machin.Url, UriKind.Absolute, out Uri uri) || null == uri)
             {
                 //Invalid URL
                 MessageBox.Show("Please, put a valid URL.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
