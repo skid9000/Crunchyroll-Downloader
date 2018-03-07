@@ -195,6 +195,7 @@ namespace CrunchyrollDownloader
             machin.Url = urlBox.Text;
             machin.SavePath = save_TextBox.Text;
             machin.STState = "0";
+            machin.Quality = QualitycomboBox.Text;
 
             if (string.IsNullOrEmpty(machin.Url))
             {
@@ -212,6 +213,12 @@ namespace CrunchyrollDownloader
             if (string.IsNullOrEmpty(machin.SavePath))
             {
                 MessageBox.Show("Please, put a save path.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(machin.Quality))
+            {
+                MessageBox.Show("Please, choose a quality.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 

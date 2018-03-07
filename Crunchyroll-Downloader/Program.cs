@@ -12,6 +12,7 @@ namespace CrunchyrollDownloader
         public string Langue { get; set; }
         public string Format { get; set; }
         public string SavePath { get; set; }
+        public string Quality { get; set; }
 
         /// <summary>
         /// Downloadings a file.
@@ -25,7 +26,7 @@ namespace CrunchyrollDownloader
 
             if (STState == "1")
             {
-                process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
                 var viewerThread = new Thread(() =>
                 {
                     var download_window = new DownloadWindow();
@@ -45,7 +46,7 @@ namespace CrunchyrollDownloader
             }
             else
             {
-                process.StartInfo.Arguments = $"--no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
 
                 var viewerThread = new Thread(() =>
                 {
