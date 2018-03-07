@@ -114,7 +114,7 @@ namespace CrunchyrollDownloader
             // Configure the process using the StartInfo properties.
             process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
             process.StartInfo.Arguments = "-U";
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
             process.Start();
             process.WaitForExit(); // Waits here for the process to exit.
         }
@@ -239,7 +239,6 @@ namespace CrunchyrollDownloader
             }
             if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
             {
-                UpdateYTDL();
                 machin.Downloading();
             }
             else
@@ -269,6 +268,11 @@ namespace CrunchyrollDownloader
             File.Delete(@"C:\ProgramData\Crunchy-DL\cookies.txt");
             button_login.IsEnabled = true;
             button_logout.IsEnabled = false;
+        }
+
+        private void button_updateytdl_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateYTDL();
         }
     }
 }

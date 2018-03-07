@@ -22,6 +22,7 @@
         <!-- Common buttons -->
         <WrapPanel Grid.Row="1" FlowDirection="RightToLeft">
             <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" IsCancel="True" Click="aboutButton_Click"/>
+            <Button x:Name="button_updateytdl" Content="Update Youtube-DL" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="120" Height="40" Click="button_updateytdl_Click"/>
             <Button x:Name="button_logout" Content="Logout" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_logout_Click"/>
             <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_login_Click"/>
         </WrapPanel>
