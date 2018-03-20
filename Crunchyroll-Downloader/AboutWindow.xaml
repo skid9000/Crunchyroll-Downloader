@@ -1,0 +1,23 @@
+﻿<Window x:Class="Crunchyroll_Downloader.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="About" Height="250" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="40*" />
+            <RowDefinition Height="103*" />
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="fond.jpg"/>
+        </Grid.Background>
+        <Label Grid.Row="0" x:Name="label_1" Content="This tool is under the AGPLv3 license." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="207"/>
+        <Label Grid.Row="1" x:Name="label_2" Content="All informations on github." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="151"/>
+        <Label Grid.Row="2" x:Name="label_3" Content="https://github.com/skid9000/Crunchyroll-Downloader" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="295"/>
+        <Button Grid.Row="3" x:Name="button" Content="Update Youtube-DL" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" Height="34" Width="372" Click="button_Click"/>
+    </Grid>
+</Window>

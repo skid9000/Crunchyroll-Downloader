@@ -190,6 +190,8 @@ namespace CrunchyrollDownloader
                 machin.Langue = "itIT";
             else if (comboBox.Text == "Deutsch")
                 machin.Langue = "deDE";
+            else if (comboBox.Text == "Русский")
+                machin.Langue = "ruRU";
 
             machin.Format = comboBox_Copy.Text;
             machin.Url = urlBox.Text;
@@ -245,8 +247,12 @@ namespace CrunchyrollDownloader
                 MessageBox.Show("Please login.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }
 
-        private void aboutButton_Click(object sender, RoutedEventArgs e) =>
-            MessageBox.Show("All informations on github. https://github.com/skid9000/Crunchyroll-Downloader", "About", MessageBoxButton.OK);
+        private void aboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var aboutWindow = new Crunchyroll_Downloader.AboutWindow();
+            aboutWindow.Show();
+            Close();
+        }
 
         private void CheckBoxChanged()
         {
@@ -268,11 +274,6 @@ namespace CrunchyrollDownloader
             File.Delete(@"C:\ProgramData\Crunchy-DL\cookies.txt");
             button_login.IsEnabled = true;
             button_logout.IsEnabled = false;
-        }
-
-        private void button_updateytdl_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateYTDL();
         }
     }
 }

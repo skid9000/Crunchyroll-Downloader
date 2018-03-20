@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CrunchyrollDownloader"
         mc:Ignorable="d"
         Title="Crunchyroll Downloader" Height="350" Width="525" ResizeMode="CanMinimize" Icon="logo.ico">
     <Grid>
@@ -22,7 +21,6 @@
         <!-- Common buttons -->
         <WrapPanel Grid.Row="1" FlowDirection="RightToLeft">
             <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" IsCancel="True" Click="aboutButton_Click"/>
-            <Button x:Name="button_updateytdl" Content="Update Youtube-DL" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="120" Height="40" Click="button_updateytdl_Click"/>
             <Button x:Name="button_logout" Content="Logout" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_logout_Click"/>
             <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_login_Click"/>
         </WrapPanel>
@@ -64,6 +62,7 @@
                 <ComboBoxItem Content="العربية"/>
                 <ComboBoxItem Content="Italiano"/>
                 <ComboBoxItem Content="Deutsch"/>
+                <ComboBoxItem Content="Русский"/>
             </ComboBox>
             <Label Grid.Column="3" x:Name="label1_Copy" Content="Format" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
             <ComboBox Grid.Column="4" x:Name="comboBox_Copy" VerticalAlignment="Center" IsEnabled="False">
