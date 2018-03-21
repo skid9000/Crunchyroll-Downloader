@@ -65,7 +65,7 @@ namespace CrunchyrollDownloader
                         }
                         else
                         {
-                            client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.03.03/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+                            client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.03.20/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
                             UpdateYTDL();
                             InitializeComponent();
                             CheckCookie();
@@ -138,7 +138,7 @@ namespace CrunchyrollDownloader
                 var zip = new FastZip();
                 MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
                 Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-                client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.03.03/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+                client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.03.20/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
                 client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
                 client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
 
