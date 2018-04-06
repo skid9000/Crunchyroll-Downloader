@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Win32;
 using System;
+using System.ComponentModel;
 
 namespace CrunchyrollDownloader
 {
@@ -65,7 +66,7 @@ namespace CrunchyrollDownloader
                         }
                         else
                         {
-                            client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.03.20/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+                            client.DownloadFile("https://yt-dl.org/downloads/latest/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
                             UpdateYTDL();
                             InitializeComponent();
                             CheckCookie();
@@ -87,7 +88,6 @@ namespace CrunchyrollDownloader
                             CheckCookie();
                         }
                     }
-
                 }
                 else
                     InstallAll();
@@ -121,6 +121,8 @@ namespace CrunchyrollDownloader
 
         private void InstallAll()
         {
+            var dl_status = new dl_status();
+            dl_status.progress = "1";
             var viewerThread = new Thread(() =>
             {
                 var download_window = new DownloadWindow();
@@ -133,15 +135,23 @@ namespace CrunchyrollDownloader
             viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
             viewerThread.Start();
             var actualFolder = @"C:\ProgramData\Crunchy-DL";
-            using (var client = new WebClient())
-            {
                 var zip = new FastZip();
                 MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
                 Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-                client.DownloadFile("https://github.com/rg3/youtube-dl/releases/download/2018.03.20/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-                client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
-                client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+                dl_status.label_dl = "Downloading Youtube-DL";
+                string dl_url = "https://yt-dl.org/downloads/latest/youtube-dl.exe";
+                string dl_path = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
+                startDownload(dl_url, dl_path);
+                dl_status.label_dl = "Downloading FFmpeg";
+                dl_url = "http://download.tucr.tk/ffmpeg.zip";
+                dl_path = @"C:\ProgramData\Crunchy-DL\ffmpeg.zip";
+                startDownload(dl_url, dl_path);
+                dl_status.label_dl = "Downloading CrunchyrollAuth";
+                dl_url = "http://download.tucr.tk/login.zip";
+                dl_path = @"C:\ProgramData\Crunchy-DL\login.zip";
+                startDownload(dl_url, dl_path);
 
+                dl_status.label_dl = "Extracting ...";
                 zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
                 zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
                 UpdateYTDL();
@@ -149,7 +159,29 @@ namespace CrunchyrollDownloader
                 viewerThread.Abort();
                 InitializeComponent();
                 CheckCookie();
-            }
+            
+        }
+
+        private void startDownload(string dl_url, string dl_path)
+        {
+            WebClient client = new WebClient();
+            client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
+            client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
+            client.DownloadFileAsync(new Uri(dl_url), dl_path);
+        }
+        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            var dl_status = new dl_status();
+            double bytesIn = double.Parse(e.BytesReceived.ToString());
+            double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
+            double percentage = bytesIn / totalBytes * 100;
+            int lol = int.Parse(Math.Truncate(percentage).ToString());
+            string lol2 = lol.ToString();
+            dl_status.progress = lol2;
+        }
+        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            return;
         }
 
         private void button_Save_Click(object sender, RoutedEventArgs e)

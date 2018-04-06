@@ -8,12 +8,15 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
+            <RowDefinition Height="25" />
             <RowDefinition Height="45" />
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="fond.jpg"/>
         </Grid.Background>
         <Image x:Name="crunchy_png" Margin="10,10,10,10" Source="crunchy.png" Grid.Row="0"/>
-        <ProgressBar x:Name="download_bar" Height="25" Margin="10,10,10,10" IsIndeterminate="True" Value="50" Cursor="None" Grid.Row="1" HorizontalContentAlignment="Stretch" />
+        <Label x:Name="dl_label" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" />
+        <ProgressBar x:Name="download_bar" Height="25" Margin="10,10,10,10" IsIndeterminate="True" Value="50" Cursor="None" Grid.Row="2" HorizontalContentAlignment="Stretch" />
+        
     </Grid>
 </Window>
