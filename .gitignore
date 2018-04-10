@@ -8,6 +8,11 @@
 *.userosscache
 *.sln.docstates
 
+# Gpg crap
+
+*.sign
+*.unknown
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
