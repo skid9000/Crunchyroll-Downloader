@@ -28,7 +28,11 @@ namespace CrunchyrollDownloader
 
 			if (STState == "1")
 			{
-				process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                if (Quality == "best")
+                    process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                else
+                    process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+
 				var viewerThread = new Thread(() =>
 				{
 					var download_window = new DownloadWindow();
@@ -48,7 +52,10 @@ namespace CrunchyrollDownloader
 			}
 			else
 			{
-				process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                if (Quality == "best")
+                    process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                else
+                    process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
 
 				var viewerThread = new Thread(() =>
 				{

@@ -34,6 +34,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" x:Name="Qualitylabel" Content="Quality" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <ComboBox Grid.Column="1" x:Name="QualitycomboBox" Height="25" VerticalAlignment="Center">
+                <ComboBoxItem Content="Best (recommended)"/>
                 <ComboBoxItem Content="1080"/>
                 <ComboBoxItem Content="720"/>
                 <ComboBoxItem Content="480"/>

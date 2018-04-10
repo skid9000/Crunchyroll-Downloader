@@ -225,11 +225,21 @@ namespace CrunchyrollDownloader
 			else if (comboBox.Text == "Русский")
 				machin.Langue = "ruRU";
 
-			machin.Format = comboBox_Copy.Text;
+            if (QualitycomboBox.Text == "Best (recommended)")
+                machin.Quality = "best";
+            else if (QualitycomboBox.Text == "1080p")
+                machin.Quality = "1080";
+            else if (QualitycomboBox.Text == "720p")
+                machin.Quality = "720";
+            else if (QualitycomboBox.Text == "480p")
+                machin.Quality = "480";
+            else if (QualitycomboBox.Text == "360p")
+                machin.Quality = "360";
+
+            machin.Format = comboBox_Copy.Text;
 			machin.Url = urlBox.Text;
 			machin.SavePath = save_TextBox.Text;
 			machin.STState = "0";
-			machin.Quality = QualitycomboBox.Text;
 
 			if (string.IsNullOrEmpty(machin.Url))
 			{
