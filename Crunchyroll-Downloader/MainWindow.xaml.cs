@@ -186,20 +186,30 @@ namespace CrunchyrollDownloader
 
 		private void button_Save_Click(object sender, RoutedEventArgs e)
 		{
-			// Create OpenFileDialog
-			var dialog = new SaveFileDialog
-			{
-				// Set filter for file extension and default file extension
-				DefaultExt = ".mp4",
-				Filter = "Such mp4, such wow | *.mp4"
-			};
+            // Create OpenFileDialog
 
-			// Display OpenFileDialog by calling ShowDialog method
-			var result = dialog.ShowDialog();
-
-			// Get the selected file name and display in a TextBox
-			if (result ?? false)
-				save_TextBox.Text = dialog.FileName; // Open document
+            if (MkvcheckBox.IsChecked.Value == true)
+            {
+                var dialog = new SaveFileDialog
+                {
+                    DefaultExt = ".mkv",
+                    Filter = "Mkv | *.mkv"
+                };
+                var result = dialog.ShowDialog();
+                if (result ?? false)
+                    save_TextBox.Text = dialog.FileName;
+            }
+            else
+            {
+                var dialog = new SaveFileDialog
+                {
+                    DefaultExt = ".mp4",
+                    Filter = "Mp4 | *.mp4"
+                };
+                var result = dialog.ShowDialog();
+                if (result ?? false)
+                    save_TextBox.Text = dialog.FileName;
+            }
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
@@ -235,6 +245,11 @@ namespace CrunchyrollDownloader
                 machin.Quality = "480";
             else if (QualitycomboBox.Text == "360p")
                 machin.Quality = "360";
+
+            if (MkvcheckBox.IsChecked.Value == true)
+                machin.MkvStatus = "1";
+            else
+                machin.MkvStatus = "0";
 
             machin.Format = comboBox_Copy.Text;
 			machin.Url = urlBox.Text;

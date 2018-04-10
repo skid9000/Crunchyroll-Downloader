@@ -23,6 +23,7 @@
             <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" IsCancel="True" Click="aboutButton_Click"/>
             <Button x:Name="button_logout" Content="Logout" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_logout_Click"/>
             <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_login_Click"/>
+            <CheckBox x:Name="MkvcheckBox" Foreground="White" Content="Mkv" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </WrapPanel>
         <!-- URL part -->
         <Grid Grid.Row="2" Margin="5,0,5,0">
@@ -32,6 +33,7 @@
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
+            
             <Label Grid.Column="0" x:Name="Qualitylabel" Content="Quality" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <ComboBox Grid.Column="1" x:Name="QualitycomboBox" Height="25" VerticalAlignment="Center">
                 <ComboBoxItem Content="Best (recommended)"/>
