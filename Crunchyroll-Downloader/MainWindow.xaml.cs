@@ -121,9 +121,8 @@ namespace CrunchyrollDownloader
 
 		private void InstallAll()
 		{
-			var dl_status = new dl_status();
-			dl_status.progress = "1";
-			var viewerThread = new Thread(() =>
+            //var machin = new Program();
+            var viewerThread = new Thread(() =>
 			{
 				var download_window = new DownloadWindow();
 				download_window.Show();
@@ -133,26 +132,32 @@ namespace CrunchyrollDownloader
 				Dispatcher.Run();
 			});
 			viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
-			viewerThread.Start();
-			var actualFolder = @"C:\ProgramData\Crunchy-DL";
+            var actualFolder = @"C:\ProgramData\Crunchy-DL";
 			var zip = new FastZip();
 			MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
 			Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-			dl_status.label_dl = "Downloading Youtube-DL";
+			//machin.DlStatus = "Downloading Youtube-DL";
 			string dl_url = "https://yt-dl.org/downloads/latest/youtube-dl.exe";
 			string dl_path = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-			startDownload(dl_url, dl_path);
-			dl_status.label_dl = "Downloading FFmpeg";
+            viewerThread.Start();
+            startDownload(dl_url, dl_path);
+            //viewerThread.Abort();
+            //machin.DlStatus = "Downloading FFmpeg";
 			dl_url = "http://download.tucr.tk/ffmpeg.zip";
 			dl_path = @"C:\ProgramData\Crunchy-DL\ffmpeg.zip";
-			startDownload(dl_url, dl_path);
-			dl_status.label_dl = "Downloading CrunchyrollAuth";
+            //viewerThread.Start();
+            startDownload(dl_url, dl_path);
+            //viewerThread.Abort();
+            //machin.DlStatus = "Downloading CrunchyrollAuth";
 			dl_url = "http://download.tucr.tk/login.zip";
 			dl_path = @"C:\ProgramData\Crunchy-DL\login.zip";
-			startDownload(dl_url, dl_path);
+            //viewerThread.Start();
+            startDownload(dl_url, dl_path);
+            //viewerThread.Abort();
 
-			dl_status.label_dl = "Extracting ...";
-			zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
+            //machin.DlStatus = "Extracting ...";
+            //viewerThread.Start();
+            zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
 			zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
 			UpdateYTDL();
 			MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -167,17 +172,15 @@ namespace CrunchyrollDownloader
 			WebClient client = new WebClient();
 			client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
 			client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-			client.DownloadFileAsync(new Uri(dl_url), dl_path);
+			client.DownloadFile(new Uri(dl_url), dl_path);
 		}
 		void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
 		{
-			var dl_status = new dl_status();
 			double bytesIn = double.Parse(e.BytesReceived.ToString());
 			double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
 			double percentage = bytesIn / totalBytes * 100;
 			int lol = int.Parse(Math.Truncate(percentage).ToString());
 			string lol2 = lol.ToString();
-			dl_status.progress = lol2;
 		}
 		void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
@@ -187,20 +190,6 @@ namespace CrunchyrollDownloader
 		private void button_Save_Click(object sender, RoutedEventArgs e)
 		{
             // Create OpenFileDialog
-
-            if (MkvcheckBox.IsChecked.Value == true)
-            {
-                var dialog = new SaveFileDialog
-                {
-                    DefaultExt = ".mkv",
-                    Filter = "Mkv | *.mkv"
-                };
-                var result = dialog.ShowDialog();
-                if (result ?? false)
-                    save_TextBox.Text = dialog.FileName;
-            }
-            else
-            {
                 var dialog = new SaveFileDialog
                 {
                     DefaultExt = ".mp4",
@@ -209,7 +198,6 @@ namespace CrunchyrollDownloader
                 var result = dialog.ShowDialog();
                 if (result ?? false)
                     save_TextBox.Text = dialog.FileName;
-            }
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
@@ -315,7 +303,9 @@ namespace CrunchyrollDownloader
 		{
 			comboBox.IsEnabled = checkBox.IsChecked.Value;
 			comboBox_Copy.IsEnabled = checkBox.IsChecked.Value;
-		}
+            MkvcheckBox.IsEnabled = checkBox.IsChecked.Value;
+
+        }
 		private void checkBox_Checked(object sender, RoutedEventArgs e) => CheckBoxChanged();
 		private void checkBox_Unchecked(object sender, RoutedEventArgs e) => CheckBoxChanged();
 

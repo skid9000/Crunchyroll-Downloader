@@ -14,6 +14,7 @@ namespace CrunchyrollDownloader
 		public string SavePath { get; set; }
 		public string Quality { get; set; }
         public string MkvStatus { get; set; }
+        public string DlStatus { get; set; }
 
         /// <summary>
         /// Downloadings a file.
@@ -24,8 +25,8 @@ namespace CrunchyrollDownloader
 			var process = new Process();
 			// Configure the process using the StartInfo properties.
 			process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-			process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-			process.StartInfo.RedirectStandardOutput = true;
+			process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+			// process.StartInfo.RedirectStandardOutput = true;
 
             if (MkvStatus == "1")
             {

@@ -23,7 +23,6 @@
             <Button x:Name="aboutButton" Content="About" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" IsCancel="True" Click="aboutButton_Click"/>
             <Button x:Name="button_logout" Content="Logout" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_logout_Click"/>
             <Button x:Name="button_login" Content="Login" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Width="100" Height="40" Click="button_login_Click"/>
-            <CheckBox x:Name="MkvcheckBox" Foreground="White" Content="Mkv" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </WrapPanel>
         <!-- URL part -->
         <Grid Grid.Row="2" Margin="5,0,5,0">
@@ -48,15 +47,19 @@
         <!-- Subtitle part -->
         <Grid Grid.Row="3" Margin="5,0,5,0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65" />
+                <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="55" />
                 <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" x:Name="checkBox" Foreground="White" Content="Subtitles" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
-            <Label Grid.Column="1" x:Name="label1" Content="Language" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <ComboBox Grid.Column="2" x:Name="comboBox" VerticalAlignment="Center" IsEnabled="False">
+            <Label Grid.Column="0" x:Name="label42" Content="Subtitles" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <CheckBox Grid.Column="1" x:Name="checkBox" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked"/>
+            <Label Grid.Column="2" x:Name="label1" Content="Language" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <ComboBox Grid.Column="3" x:Name="comboBox" VerticalAlignment="Center" IsEnabled="False">
                 <ComboBoxItem Content="Français (France)"/>
                 <ComboBoxItem Content="English (US)"/>
                 <ComboBoxItem Content="Español"/>
@@ -67,11 +70,13 @@
                 <ComboBoxItem Content="Deutsch"/>
                 <ComboBoxItem Content="Русский"/>
             </ComboBox>
-            <Label Grid.Column="3" x:Name="label1_Copy" Content="Format" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
-            <ComboBox Grid.Column="4" x:Name="comboBox_Copy" VerticalAlignment="Center" IsEnabled="False">
+            <Label Grid.Column="4" x:Name="label1_Copy" Content="Format" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <ComboBox Grid.Column="5" x:Name="comboBox_Copy" VerticalAlignment="Center" IsEnabled="False">
                 <ComboBoxItem Content="srt"/>
                 <ComboBoxItem Content="ass"/>
             </ComboBox>
+            <CheckBox Grid.Column="6" x:Name="MkvcheckBox" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="False"/>
+            <Label Grid.Column="7" x:Name="label2_Copy" Content="MKV" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" IsEnabled="False"/>
         </Grid>
         <!-- Path part -->
         <Grid Grid.Row="4" Margin="5,0,5,0">
