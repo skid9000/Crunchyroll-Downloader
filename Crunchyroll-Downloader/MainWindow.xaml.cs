@@ -322,5 +322,5 @@ namespace CrunchyrollDownloader
 			button_login.IsEnabled = true;
 			button_logout.IsEnabled = false;
 		}
-	}
+    }
 }
