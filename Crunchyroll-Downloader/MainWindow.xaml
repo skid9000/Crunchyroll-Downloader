@@ -36,10 +36,10 @@
             <Label Grid.Column="0" x:Name="Qualitylabel" Content="Quality" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <ComboBox Grid.Column="1" x:Name="QualitycomboBox" Height="25" VerticalAlignment="Center">
                 <ComboBoxItem Content="Best (recommended)"/>
-                <ComboBoxItem Content="1080"/>
-                <ComboBoxItem Content="720"/>
-                <ComboBoxItem Content="480"/>
-                <ComboBoxItem Content="360"/>
+                <ComboBoxItem Content="1080p"/>
+                <ComboBoxItem Content="720p"/>
+                <ComboBoxItem Content="480p"/>
+                <ComboBoxItem Content="360p"/>
             </ComboBox>
             <Label Grid.Column="2" x:Name="label" Content="URL" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <TextBox Grid.Column="3" x:Name="urlBox" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
