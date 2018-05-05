@@ -1,4 +1,4 @@
-## How to contribute to Ruby on Rails
+## How to contribute to Crunchyroll-Downloader
 
 #### **Did you find a bug?**
 
