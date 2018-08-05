@@ -16,7 +16,7 @@ namespace CrunchyrollDownloader
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+        public MainWindow()
 		{
 			var actualFolder = @"C:\ProgramData\Crunchy-DL";
 			using (var client = new WebClient())
@@ -119,73 +119,51 @@ namespace CrunchyrollDownloader
 			process.WaitForExit(); // Waits here for the process to exit.
 		}
 
-		private void InstallAll()
+        public string dl_label { get; private set; }
+
+        private void InstallAll()
 		{
-            //var machin = new Program();
             var viewerThread = new Thread(() =>
-			{
-				var download_window = new DownloadWindow();
-				download_window.Show();
-				download_window.Activate();
-				download_window.Closed += (s, e) =>
-				Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
-				Dispatcher.Run();
-			});
-			viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
+            {
+                var download_window = new DownloadWindow();
+                download_window.MyString = dl_label;
+                download_window.Show();
+                download_window.Activate();
+                download_window.Closed += (s, e) =>
+                Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
+                Dispatcher.Run();
+            });
+            viewerThread.SetApartmentState(ApartmentState.STA); // needs to be STA or throws exception
+            
             var actualFolder = @"C:\ProgramData\Crunchy-DL";
-			var zip = new FastZip();
-			MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
-			Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-			//machin.DlStatus = "Downloading Youtube-DL";
-			string dl_url = "https://yt-dl.org/downloads/latest/youtube-dl.exe";
-			string dl_path = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-            viewerThread.Start();
-            startDownload(dl_url, dl_path);
-            //viewerThread.Abort();
-            //machin.DlStatus = "Downloading FFmpeg";
-			dl_url = "http://download.tucr.tk/ffmpeg.zip";
-			dl_path = @"C:\ProgramData\Crunchy-DL\ffmpeg.zip";
-            //viewerThread.Start();
-            startDownload(dl_url, dl_path);
-            //viewerThread.Abort();
-            //machin.DlStatus = "Downloading CrunchyrollAuth";
-			dl_url = "http://download.tucr.tk/login.zip";
-			dl_path = @"C:\ProgramData\Crunchy-DL\login.zip";
-            //viewerThread.Start();
-            startDownload(dl_url, dl_path);
-            //viewerThread.Abort();
+            using (var client = new WebClient())
+            {
+                var zip = new FastZip();
+                MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+                Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
+                dl_label="[1/3] Downloading dependencies : Youtube-DL ...";
+                viewerThread.Start();
+                client.DownloadFile("https://yt-dl.org/downloads/latest/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
+                viewerThread.Abort();
+                dl_label = "[2/3] Downloading dependencies : FFmpeg ...";
+                viewerThread.Start();
+                client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+                viewerThread.Abort();
+                dl_label = "[3/3] Downloading dependencies : Crunchyroll-Auth ...";
+                viewerThread.Start();
+                client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+                viewerThread.Abort();
 
-            //machin.DlStatus = "Extracting ...";
-            //viewerThread.Start();
-            zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
-			zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
-			UpdateYTDL();
-			MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-			viewerThread.Abort();
-			InitializeComponent();
-			CheckCookie();
-			
-		}
-
-		private void startDownload(string dl_url, string dl_path)
-		{
-			WebClient client = new WebClient();
-			client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-			client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-			client.DownloadFile(new Uri(dl_url), dl_path);
-		}
-		void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-		{
-			double bytesIn = double.Parse(e.BytesReceived.ToString());
-			double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-			double percentage = bytesIn / totalBytes * 100;
-			int lol = int.Parse(Math.Truncate(percentage).ToString());
-			string lol2 = lol.ToString();
-		}
-		void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-		{
-			return;
-		}
+                dl_label = "Extracting ...";
+                viewerThread.Start();
+                zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
+                zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
+                viewerThread.Abort();
+                MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                InitializeComponent();
+                CheckCookie();
+            }
+        }
 
 		private void button_Save_Click(object sender, RoutedEventArgs e)
 		{
