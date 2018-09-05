@@ -33,7 +33,7 @@ namespace CrunchyrollDownloader
 
 			var process = new Process();
 			// Configure the process using the StartInfo properties.
-			process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\login\login.exe";
+			process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\login.exe";
 			process.StartInfo.Arguments = $"{username} {password}";
 			process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 			process.Start();

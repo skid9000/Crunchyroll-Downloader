@@ -25,7 +25,7 @@ namespace CrunchyrollDownloader
 			var process = new Process();
 			// Configure the process using the StartInfo properties.
 			process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-			process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+			process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
 			// process.StartInfo.RedirectStandardOutput = true;
 
             if (MkvStatus == "1")
@@ -33,16 +33,16 @@ namespace CrunchyrollDownloader
                 if (STState == "1")
                 {
                     if (Quality == "best")
-                        process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                        process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
                     else
-                        process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                        process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
                 }
                 else
                 {
                     if (Quality == "best")
-                        process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                        process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
                     else
-                        process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+                        process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
                 }
             }
             else

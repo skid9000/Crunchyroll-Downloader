@@ -19,7 +19,7 @@
         <Label Grid.Row="0" x:Name="label_1" Content="This tool is under the AGPLv3 license." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="207"/>
         <Label Grid.Row="1" x:Name="label_2" Content="All informations on github." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="151"/>
         <Label Grid.Row="2" x:Name="label_3" Content="https://github.com/skid9000/Crunchyroll-Downloader" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="295"/>
-        <Label Grid.Row="3" x:Name="label_4" Content="Version : v1.2.6c" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="295"/>
+        <Label Grid.Row="3" x:Name="label_4" Content="Version : v1.2.7" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="295"/>
         <Button Grid.Row="4" x:Name="button" Content="Update Youtube-DL" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="34" Width="372" Click="button_Click"/>
     </Grid>
 </Window>
