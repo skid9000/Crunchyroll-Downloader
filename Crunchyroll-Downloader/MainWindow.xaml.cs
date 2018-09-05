@@ -31,61 +31,36 @@ namespace CrunchyrollDownloader
 						{
 							if (Directory.Exists(@"C:\ProgramData\Crunchy-DL\login"))
 							{
-								if (File.Exists(@"C:\ProgramData\Crunchy-DL\login\v1.2.3.txt"))
-								{
-									InitializeComponent();
-									CheckCookie();
-								}
-								else
-								{
-									File.Delete(@"C:\ProgramData\Crunchy-DL\login.zip");
-									Directory.Delete(@"C:\ProgramData\Crunchy-DL\login", true);
-									client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
-									zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
-									InitializeComponent();
-									CheckCookie();
-								}
-							  
+								InitializeComponent();
+								CheckCookie();
 							}
 							else
 							{
-								if (File.Exists(@"C:\ProgramData\Crunchy-DL\login.zip"))
-								{
-									zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
-									InitializeComponent();
-									CheckCookie();
-								}
-								else
-								{
-									client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
-									zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
-									InitializeComponent();
-									CheckCookie();
-								}
+								MessageBox.Show("Dependencies seems corrupted or missing, click OK to re-download them.", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+								Directory.Delete(actualFolder, true);
+								InstallAll();
 							}
 						}
 						else
 						{
-							client.DownloadFile("https://yt-dl.org/downloads/latest/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-							UpdateYTDL();
-							InitializeComponent();
-							CheckCookie();
+							MessageBox.Show("Dependencies seems corrupted or missing, click OK to re-download them.", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+							Directory.Delete(actualFolder, true);
+							InstallAll();
 						}
 					}
 					else
 					{
 						if (File.Exists(@"C:\ProgramData\Crunchy-DL\ffmpeg.zip"))
 						{
-							zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
-							InitializeComponent();
-							CheckCookie();
+							MessageBox.Show("Dependencies seems corrupted or missing, click OK to re-download them.", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+							Directory.Delete(actualFolder, true);
+							InstallAll();
 						}
 						else
 						{
-							client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
-							zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
-							InitializeComponent();
-							CheckCookie();
+							MessageBox.Show("Dependencies seems corrupted or missing, click OK to re-download them.", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+							Directory.Delete(actualFolder, true);
+							InstallAll();
 						}
 					}
 				}
@@ -139,7 +114,7 @@ namespace CrunchyrollDownloader
             using (var client = new WebClient())
             {
                 var zip = new FastZip();
-                MessageBox.Show("Youtube-DL & FFmpeg not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Dependencies not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
                 Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
                 dl_label="[1/3] Downloading dependencies : Youtube-DL ...";
                 viewerThread.Start();
@@ -147,16 +122,20 @@ namespace CrunchyrollDownloader
                 viewerThread.Abort();
                 dl_label = "[2/3] Downloading dependencies : FFmpeg ...";
                 viewerThread.Start();
-                client.DownloadFile("http://download.tucr.tk/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+                client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
+				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffplay.zip", @"C:\ProgramData\Crunchy-DL\ffplay.zip");
+				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffprobe.zip", @"C:\ProgramData\Crunchy-DL\ffprobe.zip");
                 viewerThread.Abort();
                 dl_label = "[3/3] Downloading dependencies : Crunchyroll-Auth ...";
                 viewerThread.Start();
-                client.DownloadFile("http://download.tucr.tk/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+                client.DownloadFile("https://github.com/skid9000/CrunchyrollAuth/releases/download/1.0/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
                 viewerThread.Abort();
 
                 dl_label = "Extracting ...";
                 viewerThread.Start();
                 zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
+				zip.ExtractZip(actualFolder + @"\ffplay.zip", actualFolder, "");
+				zip.ExtractZip(actualFolder + @"\ffprobe.zip", actualFolder, "");
                 zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
                 viewerThread.Abort();
                 MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -168,14 +147,10 @@ namespace CrunchyrollDownloader
 		private void button_Save_Click(object sender, RoutedEventArgs e)
 		{
             // Create OpenFileDialog
-                var dialog = new SaveFileDialog
-                {
-                    DefaultExt = ".mp4",
-                    Filter = "Mp4 | *.mp4"
-                };
+                var dialog = new FolderBrowserDialog();
                 var result = dialog.ShowDialog();
                 if (result ?? false)
-                    save_TextBox.Text = dialog.FileName;
+                    save_TextBox.Text = dialog.SelectedPath;
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)

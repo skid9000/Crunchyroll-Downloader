@@ -25,7 +25,7 @@ namespace CrunchyrollDownloader
 			var process = new Process();
 			// Configure the process using the StartInfo properties.
 			process.StartInfo.FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe";
-			process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+			process.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
 			// process.StartInfo.RedirectStandardOutput = true;
 
             if (MkvStatus == "1")
