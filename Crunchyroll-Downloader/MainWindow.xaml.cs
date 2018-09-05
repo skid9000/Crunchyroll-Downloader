@@ -31,7 +31,7 @@ namespace CrunchyrollDownloader
 					{
 						if (File.Exists(@"C:\ProgramData\Crunchy-DL\youtube-dl.exe"))
 						{
-							if (Directory.Exists(@"C:\ProgramData\Crunchy-DL\login"))
+							if (File.Exists(@"C:\ProgramData\Crunchy-DL\login.exe"))
 							{
 								InitializeComponent();
 								CheckCookie();
@@ -130,7 +130,7 @@ namespace CrunchyrollDownloader
 				//viewerThread.Abort();
 				//dl_label = "[3/3] Downloading dependencies : Crunchyroll-Auth ...";
 				//viewerThread.Start();
-				client.DownloadFile("https://github.com/skid9000/CrunchyrollAuth/releases/download/1.0/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
+				client.DownloadFile("https://github.com/skid9000/CrunchyrollAuth/releases/download/1.0/login.exe", @"C:\ProgramData\Crunchy-DL\login.exe");
 				//viewerThread.Abort();
 
 				//dl_label = "Extracting ...";
@@ -138,7 +138,6 @@ namespace CrunchyrollDownloader
 				zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
 				zip.ExtractZip(actualFolder + @"\ffplay.zip", actualFolder, "");
 				zip.ExtractZip(actualFolder + @"\ffprobe.zip", actualFolder, "");
-				zip.ExtractZip(actualFolder + @"\login.zip", actualFolder, "");
 				viewerThread.Abort();
 				MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 				InitializeComponent();
