@@ -116,25 +116,25 @@ namespace CrunchyrollDownloader
 			using (var client = new WebClient())
 			{
 				var zip = new FastZip();
-				MessageBox.Show("Dependencies not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
+				//MessageBox.Show("Dependencies not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
 				Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-				dl_label="[1/3] Downloading dependencies : Youtube-DL ...";
+				//dl_label="[1/3] Downloading dependencies : Youtube-DL ...";
 				viewerThread.Start();
 				client.DownloadFile("https://yt-dl.org/downloads/latest/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-				viewerThread.Abort();
-				dl_label = "[2/3] Downloading dependencies : FFmpeg ...";
-				viewerThread.Start();
+				//viewerThread.Abort();
+				//dl_label = "[2/3] Downloading dependencies : FFmpeg ...";
+				//viewerThread.Start();
 				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
 				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffplay.zip", @"C:\ProgramData\Crunchy-DL\ffplay.zip");
 				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffprobe.zip", @"C:\ProgramData\Crunchy-DL\ffprobe.zip");
-				viewerThread.Abort();
-				dl_label = "[3/3] Downloading dependencies : Crunchyroll-Auth ...";
-				viewerThread.Start();
+				//viewerThread.Abort();
+				//dl_label = "[3/3] Downloading dependencies : Crunchyroll-Auth ...";
+				//viewerThread.Start();
 				client.DownloadFile("https://github.com/skid9000/CrunchyrollAuth/releases/download/1.0/login.zip", @"C:\ProgramData\Crunchy-DL\login.zip");
-				viewerThread.Abort();
+				//viewerThread.Abort();
 
-				dl_label = "Extracting ...";
-				viewerThread.Start();
+				//dl_label = "Extracting ...";
+				//viewerThread.Start();
 				zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
 				zip.ExtractZip(actualFolder + @"\ffplay.zip", actualFolder, "");
 				zip.ExtractZip(actualFolder + @"\ffprobe.zip", actualFolder, "");
