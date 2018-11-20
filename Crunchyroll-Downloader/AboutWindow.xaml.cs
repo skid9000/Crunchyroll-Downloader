@@ -14,7 +14,7 @@ namespace Crunchyroll_Downloader
 			Closing += new System.ComponentModel.CancelEventHandler(Window_Closing);
 		}
 
-		private void button_Click(object sender, RoutedEventArgs e)
+		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			UpdateYTDL();
 		}

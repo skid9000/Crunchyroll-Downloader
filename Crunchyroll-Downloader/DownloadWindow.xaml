@@ -16,7 +16,7 @@
         </Grid.Background>
         <Image x:Name="crunchy_png" Margin="10,10,10,10" Source="crunchy.png" Grid.Row="0"/>
         <Label x:Name="dl_label" Content="Downloading ..." HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" />
-        <ProgressBar x:Name="download_bar" Height="25" Margin="10,10,10,10" IsIndeterminate="True" Value="50" Cursor="None" Grid.Row="2" HorizontalContentAlignment="Stretch" />
+        <ProgressBar x:Name="download_bar" Height="25" Margin="10,10,10,10" Cursor="None" Grid.Row="2" HorizontalContentAlignment="Stretch" Maximum="8" IsIndeterminate="True" />
         
     </Grid>
 </Window>
