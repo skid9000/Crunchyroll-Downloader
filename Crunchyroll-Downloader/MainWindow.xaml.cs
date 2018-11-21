@@ -21,6 +21,7 @@ namespace CrunchyrollDownloader
 		public MainWindow()
 		{
 			var actualFolder = @"C:\ProgramData\Crunchy-DL";
+			RemoveZips(actualFolder);
 			using (var client = new WebClient())
 			{
 				var zip = new FastZip();
@@ -97,7 +98,18 @@ namespace CrunchyrollDownloader
 		}
 
 		public string dl_label { get; private set; }
-
+		private void RemoveZips(string actualFolder)
+		{
+			var ffmpeg = actualFolder + @"\ffmpeg.zip";
+			var ffplay = actualFolder + @"\ffplay.zip";
+			var ffprobe = actualFolder + @"\ffprobe.zip";
+			if (File.Exists(ffmpeg))
+				File.Delete(ffmpeg);
+			if (File.Exists(ffplay))
+				File.Delete(ffplay);
+			if (File.Exists(ffprobe))
+				File.Delete(ffprobe);
+		}
 		private void InstallAll()
 		{
 			var viewerThread = new Thread(() =>
@@ -139,6 +151,7 @@ namespace CrunchyrollDownloader
 				zip.ExtractZip(actualFolder + @"\ffplay.zip", actualFolder, "");
 				zip.ExtractZip(actualFolder + @"\ffprobe.zip", actualFolder, "");
 				viewerThread.Abort();
+				RemoveZips(actualFolder);
 				MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 				InitializeComponent();
 				CheckCookie();
