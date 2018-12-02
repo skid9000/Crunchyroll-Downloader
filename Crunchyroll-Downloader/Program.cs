@@ -35,16 +35,16 @@ namespace CrunchyrollDownloader
 				if (STState == "1")
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 					else
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 				}
 				else
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 				}
 			}
 			else
@@ -52,16 +52,16 @@ namespace CrunchyrollDownloader
 				if (STState == "1")
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 					else
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 				}
 				else
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt {Url}";
 				}
 			}
 
