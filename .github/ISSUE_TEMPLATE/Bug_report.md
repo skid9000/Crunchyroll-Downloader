@@ -27,10 +27,12 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
+**Infos (please complete the following information):**
  - OS (from a cmd : winver) :
  - Youtube-DL version (from a cmd : "C:\ProgramData\Crunchy-DL\youtube-dl.exe --version"
  - Crunchyroll-Downloader version (click on the about button from MainWindow) :
+ - Region of the Crunchyroll account :
+ - URL of what you tried to download :
 
 **Additional context**
 Add any other context about the problem here.
