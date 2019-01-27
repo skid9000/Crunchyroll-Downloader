@@ -1,8 +1,8 @@
----
-name: Bug report
-about: Create a report to help us improve
-
----
+<!---
+Bug report
+Create a report to help us improve
+PLEASE FILL THIS TEMPLATE, OTHERWISE, IT'S GOING TO BE HARD TO DO SOMETHING.
+-->
 
 **Checklist**
 
