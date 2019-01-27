@@ -2,7 +2,7 @@
 
 A little GUI to download crap from Crunchyroll.
 
-![screenshot](https://puush.tuto-craft.com/56856v.png)
+![screenshot](https://github.com/skid9000/Crunchyroll-Downloader/blob/master/screenshot.png)
 
 ## Dependencies & used tools
 
