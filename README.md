@@ -6,7 +6,7 @@ A little GUI to download crap from Crunchyroll.
 
 ## Dependencies & used tools
 
-***You need a premium Crunchyroll account to use this tool !***
+***You need a premium Crunchyroll account to use this tool!***
 
 Require at least [.NET FrameWork 4.7.1](https://www.microsoft.com/en-US/download/details.aspx?id=56116) and [Microsoft Visual C++ 2010 Redistributable Package (x86)](https://www.microsoft.com/en-US/download/details.aspx?id=5555) and now (thanks to CloudFlare -_-') [NodeJS](https://nodejs.org/dist/v8.11.4/node-v8.11.4-x64.msi).
 
