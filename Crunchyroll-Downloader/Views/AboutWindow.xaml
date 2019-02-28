@@ -14,7 +14,7 @@
             <RowDefinition Height="63*" />
         </Grid.RowDefinitions>
         <Grid.Background>
-            <ImageBrush ImageSource="fond.jpg"/>
+            <ImageBrush ImageSource="{StaticResource BackgroundImage}"/>
         </Grid.Background>
         <Label Grid.Row="0" x:Name="label_1" Content="This tool is under the AGPLv3 license." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="207"/>
         <Label Grid.Row="1" x:Name="label_2" Content="All informations on github." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="151"/>
