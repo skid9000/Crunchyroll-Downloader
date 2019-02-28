@@ -170,68 +170,68 @@ namespace CrunchyrollDownloader
 
 		private void button_Click(object sender, RoutedEventArgs e)
 		{
-			var machin = new Program();
+			var instance = new Program();
 
 			if (comboBox.Text == "Français (France)")
-				machin.Langue = "frFR";
+				instance.Langue = "frFR";
 			else if (comboBox.Text == "English (US)")
-				machin.Langue = "enUS";
+				instance.Langue = "enUS";
 			else if (comboBox.Text == "Español (ES)")
-				machin.Langue = "esES";
+				instance.Langue = "esES";
 			else if (comboBox.Text == "Español (LA)")
-				machin.Langue = "esLA";
+				instance.Langue = "esLA";
 			else if (comboBox.Text == "Português (Brasil)")
-				machin.Langue = "ptBR";
+				instance.Langue = "ptBR";
 			else if (comboBox.Text == "العربية")
-				machin.Langue = "arME";
+				instance.Langue = "arME";
 			else if (comboBox.Text == "Italiano")
-				machin.Langue = "itIT";
+				instance.Langue = "itIT";
 			else if (comboBox.Text == "Deutsch")
-				machin.Langue = "deDE";
+				instance.Langue = "deDE";
 			else if (comboBox.Text == "Русский")
-				machin.Langue = "ruRU";
+				instance.Langue = "ruRU";
 
 			if (QualitycomboBox.Text == "Best (recommended)")
-				machin.Quality = "best";
+				instance.Quality = "best";
 			else if (QualitycomboBox.Text == "1080p")
-				machin.Quality = "1080";
+				instance.Quality = "1080";
 			else if (QualitycomboBox.Text == "720p")
-				machin.Quality = "720";
+				instance.Quality = "720";
 			else if (QualitycomboBox.Text == "480p")
-				machin.Quality = "480";
+				instance.Quality = "480";
 			else if (QualitycomboBox.Text == "360p")
-				machin.Quality = "360";
+				instance.Quality = "360";
 
 			if (MkvcheckBox.IsChecked.Value == true)
-				machin.MkvStatus = "1";
+				instance.MkvStatus = "1";
 			else
-				machin.MkvStatus = "0";
+				instance.MkvStatus = "0";
 
-			machin.Format = comboBox_Copy.Text;
-			machin.Url = urlBox.Text;
-			machin.SavePath = save_TextBox.Text;
-			machin.STState = "0";
+			instance.Format = comboBox_Copy.Text;
+			instance.Url = urlBox.Text;
+			instance.SavePath = save_TextBox.Text;
+			instance.STState = "0";
 
-			if (string.IsNullOrEmpty(machin.Url))
+			if (string.IsNullOrEmpty(instance.Url))
 			{
 				MessageBox.Show("Please, put a URL.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				return;
 			}
 
-			if (!Uri.TryCreate(machin.Url, UriKind.Absolute, out Uri uri) || null == uri)
+			if (!Uri.TryCreate(instance.Url, UriKind.Absolute, out Uri uri) || null == uri)
 			{
 				//Invalid URL
 				MessageBox.Show("Please, put a valid URL.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				return;
 			}
 
-			if (string.IsNullOrEmpty(machin.SavePath))
+			if (string.IsNullOrEmpty(instance.SavePath))
 			{
 				MessageBox.Show("Please, put a save path.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				return;
 			}
 
-			if (string.IsNullOrEmpty(machin.Quality))
+			if (string.IsNullOrEmpty(instance.Quality))
 			{
 				MessageBox.Show("Please, choose a quality.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				return;
@@ -240,21 +240,21 @@ namespace CrunchyrollDownloader
 			if (checkBox.IsChecked ?? false)
 			{
 
-				if (string.IsNullOrEmpty(machin.Langue))
+				if (string.IsNullOrEmpty(instance.Langue))
 				{
 					MessageBox.Show("Please, choose a language.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 					return;
 				}
-				if (string.IsNullOrEmpty(machin.Format))
+				if (string.IsNullOrEmpty(instance.Format))
 				{
 					MessageBox.Show("Please, choose a sub format.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 					return;
 				}
-				machin.STState = "1";
+				instance.STState = "1";
 			}
 			if (File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
 			{
-				machin.Downloading();
+				instance.Downloading();
 			}
 			else
 				MessageBox.Show("Please login.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
