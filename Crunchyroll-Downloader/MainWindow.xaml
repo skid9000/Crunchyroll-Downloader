@@ -62,8 +62,8 @@
 			<ComboBox Grid.Column="3" x:Name="comboBox" VerticalAlignment="Center" IsEnabled="False">
 				<ComboBoxItem Content="Français (France)"/>
 				<ComboBoxItem Content="English (US)"/>
-				<ComboBoxItem Content="Español"/>
-				<ComboBoxItem Content="Español (España)"/>
+				<ComboBoxItem Content="Español (ES)"/>
+				<ComboBoxItem Content="Español (LA)"/>
 				<ComboBoxItem Content="Português (Brasil)"/>
 				<ComboBoxItem Content="العربية"/>
 				<ComboBoxItem Content="Italiano"/>

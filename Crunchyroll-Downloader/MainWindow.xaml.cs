@@ -127,6 +127,8 @@ namespace CrunchyrollDownloader
 			var actualFolder = @"C:\ProgramData\Crunchy-DL";
 			using (var client = new WebClient())
 			{
+				ServicePointManager.Expect100Continue = true;
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 				var zip = new FastZip();
 				//MessageBox.Show("Dependencies not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
 				Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
@@ -174,9 +176,9 @@ namespace CrunchyrollDownloader
 				machin.Langue = "frFR";
 			else if (comboBox.Text == "English (US)")
 				machin.Langue = "enUS";
-			else if (comboBox.Text == "Español")
+			else if (comboBox.Text == "Español (ES)")
 				machin.Langue = "esES";
-			else if (comboBox.Text == "Español (España)")
+			else if (comboBox.Text == "Español (LA)")
 				machin.Langue = "esLA";
 			else if (comboBox.Text == "Português (Brasil)")
 				machin.Langue = "ptBR";
