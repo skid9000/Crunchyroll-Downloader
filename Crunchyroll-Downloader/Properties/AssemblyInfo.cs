@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Tuto-Craft")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Tuto-Craft Corporation Copyright © 2018")]
+[assembly: AssemblyCopyright("Skid Copyright © 2019 (AGPLv3)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,12 +31,12 @@ using System.Windows;
 
 
 [assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-                                     //(used if a resource is not found in the page, 
-                                     // or application resource dictionaries)
-    ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-                                              //(used if a resource is not found in the page, 
-                                              // app, or any theme specific resource dictionaries)
+	ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
+									 //(used if a resource is not found in the page, 
+									 // or application resource dictionaries)
+	ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
+											  //(used if a resource is not found in the page, 
+											  // app, or any theme specific resource dictionaries)
 )]
 
 
@@ -50,7 +50,7 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.7.0")]
-[assembly: AssemblyFileVersion("1.2.7.0")]
+[assembly: AssemblyVersion("1.2.8.0")]
+[assembly: AssemblyFileVersion("1.2.8.0")]
 [assembly: NeutralResourcesLanguage("en")]
 

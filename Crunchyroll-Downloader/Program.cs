@@ -35,16 +35,16 @@ namespace CrunchyrollDownloader
 				if (STState == "1")
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 					else
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 				}
 				else
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 				}
 			}
 			else
@@ -52,16 +52,16 @@ namespace CrunchyrollDownloader
 				if (STState == "1")
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 					else
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"--write-sub --sub-lang {Langue} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 				}
 				else
 				{
 					if (Quality == "best")
-						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent 'Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0' {Url}";
 				}
 			}
 
