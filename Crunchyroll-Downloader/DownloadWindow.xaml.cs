@@ -17,7 +17,6 @@ namespace CrunchyrollDownloader
 	public DownloadWindow()	{
 			    Closing += new System.ComponentModel.CancelEventHandler(Window_Closing);
 	        	InitializeComponent();
-	        	dl_label.Content = this.MyString;
     }
 
 	void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) => e.Cancel = true;
