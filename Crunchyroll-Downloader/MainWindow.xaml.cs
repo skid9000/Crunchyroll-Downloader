@@ -5,9 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using ICSharpCode.SharpZipLib.Zip;
-using Microsoft.Win32;
 using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 
@@ -130,31 +128,19 @@ namespace CrunchyrollDownloader
 				ServicePointManager.Expect100Continue = true;
 				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 				var zip = new FastZip();
-				//MessageBox.Show("Dependencies not detected, downloading ...", "Important Note", MessageBoxButton.OK, MessageBoxImage.Information);
 				Directory.CreateDirectory(@"C:\ProgramData\Crunchy-DL");
-				//dl_label="[1/3] Downloading dependencies : Youtube-DL ...";
 				viewerThread.Start();
 				client.DownloadFile("https://yt-dl.org/downloads/latest/youtube-dl.exe", @"C:\ProgramData\Crunchy-DL\youtube-dl.exe");
-				//viewerThread.Abort();
-				//dl_label = "[2/3] Downloading dependencies : FFmpeg ...";
-				//viewerThread.Start();
 				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffmpeg.zip", @"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
 				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffplay.zip", @"C:\ProgramData\Crunchy-DL\ffplay.zip");
 				client.DownloadFile("https://raw.githubusercontent.com/skid9000/Crunchyroll-Downloader/develop/FFmpeg/ffprobe.zip", @"C:\ProgramData\Crunchy-DL\ffprobe.zip");
-				//viewerThread.Abort();
-				//dl_label = "[3/3] Downloading dependencies : Crunchyroll-Auth ...";
-				//viewerThread.Start();
-				client.DownloadFile("https://github.com/skid9000/CrunchyrollAuth/releases/download/1.0/login.exe", @"C:\ProgramData\Crunchy-DL\login.exe");
-				//viewerThread.Abort();
-
-				//dl_label = "Extracting ...";
-				//viewerThread.Start();
+				client.DownloadFile("https://raw.githubusercontent.com/skid9000/CrunchyrollAuth/master/login.exe", @"C:\ProgramData\Crunchy-DL\login.exe");
 				zip.ExtractZip(actualFolder + @"\ffmpeg.zip", actualFolder, "");
 				zip.ExtractZip(actualFolder + @"\ffplay.zip", actualFolder, "");
 				zip.ExtractZip(actualFolder + @"\ffprobe.zip", actualFolder, "");
 				viewerThread.Abort();
 				RemoveZips(actualFolder);
-				MessageBox.Show("youtube-dl and FFmpeg are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("Dependencies are now installed.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 				InitializeComponent();
 				CheckCookie();
 			}
@@ -162,10 +148,9 @@ namespace CrunchyrollDownloader
 
 		private void button_Save_Click(object sender, RoutedEventArgs e)
 		{
-			// Create OpenFileDialog
-				var dialog = new FolderBrowserDialog();
-				var result = dialog.ShowDialog();
-				save_TextBox.Text = dialog.SelectedPath;
+			var dialog = new FolderBrowserDialog();
+			var result = dialog.ShowDialog();
+			save_TextBox.Text = dialog.SelectedPath;
 		}
 
 		private void button_Click(object sender, RoutedEventArgs e)
