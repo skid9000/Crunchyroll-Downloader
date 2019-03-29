@@ -45,7 +45,7 @@ namespace Crunchyroll_Downloader
 		private Installer _installer = new Installer();
 		private async Task RedownloadDeps()
 		{
-			_installer.DeleteInstalation();
+			_installer.DeleteInstallation();
 			await _installer.InstallAll();
 		}
 	}
