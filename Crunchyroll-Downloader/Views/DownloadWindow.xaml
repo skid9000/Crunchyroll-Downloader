@@ -1,23 +1,23 @@
 ﻿<Window x:Class="CrunchyrollDownloader.DownloadWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:CrunchyrollDownloader.ViewModels"
-        mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:DownloadingViewModel}"
-        Title="Downloading" Height="168.75" Width="366.477" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" IsTabStop="True" ShowInTaskbar="False">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="{StaticResource BackgroundImage}"/>
-        </Grid.Background>
-        <Rectangle Fill="Gray" Opacity="0.62" Grid.RowSpan="3"/>
-        <Image Margin="10,10,10,10" Source="/Images/crunchy.png" Grid.Row="0"/>
-        <TextBlock Text="{Binding Progress.CurrentDisplay}" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" />
-        <ProgressBar Height="25" Margin="10,10,10,10" IsIndeterminate="{Binding IsIndeterminate}" Grid.Row="2" Maximum="1" Value="{Binding Progress.TotalProgress, Mode=OneWay}"/>
-    </Grid>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:viewModels="clr-namespace:CrunchyrollDownloader.ViewModels"
+		mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:DownloadingViewModel}"
+		Title="Downloading" Height="168.75" Width="366.477" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" IsTabStop="True" ShowInTaskbar="False">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.Background>
+			<ImageBrush ImageSource="{StaticResource BackgroundImage}"/>
+		</Grid.Background>
+		<Rectangle Fill="Gray" Opacity="0.62" Grid.RowSpan="3"/>
+		<Image Margin="10,10,10,10" Source="/Images/crunchy.png" Grid.Row="0"/>
+		<TextBlock Text="{Binding Progress.CurrentDisplay}" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" />
+		<ProgressBar Height="25" Margin="10,10,10,10" IsIndeterminate="{Binding IsIndeterminate}" Grid.Row="2" Maximum="1" Value="{Binding Progress.TotalProgress, Mode=OneWay}"/>
+	</Grid>
 </Window>

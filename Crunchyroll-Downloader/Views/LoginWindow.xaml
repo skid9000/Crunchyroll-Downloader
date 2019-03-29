@@ -1,29 +1,29 @@
 ﻿<Window x:Class="CrunchyrollDownloader.LoginWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" WindowStartupLocation="CenterOwner"
-        Title="Log-in" Height="300" Width="300" ResizeMode="NoResize" Icon="/Images/logo.ico" ShowInTaskbar="False">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="{StaticResource BackgroundImage}"/>
-        </Grid.Background>
-        <Grid.Resources>
-        </Grid.Resources>
-        <Image x:Name="crunchy_png" Grid.Row="0" Margin="10,10,10,10" Source="/Images/crunchy.png"/>
-        <Label x:Name="label" Grid.Row="1" Foreground="White" Content="Username" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="textBox_username" Grid.Row="2" Height="25" Margin="10,0,10,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label x:Name="label1" Content="Password" Foreground="White" Grid.Row="3" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <PasswordBox x:Name="textBox_password" Grid.Row="4" Height="25" Margin="10,0,10,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="button_login" Grid.Row="5" Content="Login" Margin="10,10,10,10" Click="button_login_Click"/>
-    </Grid>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" WindowStartupLocation="CenterOwner"
+		Title="Log-in" Height="300" Width="300" ResizeMode="NoResize" Icon="/Images/logo.ico" ShowInTaskbar="False">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="50" />
+		</Grid.RowDefinitions>
+		<Grid.Background>
+			<ImageBrush ImageSource="{StaticResource BackgroundImage}"/>
+		</Grid.Background>
+		<Grid.Resources>
+		</Grid.Resources>
+		<Image x:Name="crunchy_png" Grid.Row="0" Margin="10,10,10,10" Source="/Images/crunchy.png"/>
+		<Label x:Name="label" Grid.Row="1" Foreground="White" Content="Username" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+		<TextBox x:Name="textBox_username" Grid.Row="2" Height="25" Margin="10,0,10,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+		<Label x:Name="label1" Content="Password" Foreground="White" Grid.Row="3" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+		<PasswordBox x:Name="textBox_password" Grid.Row="4" Height="25" Margin="10,0,10,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+		<Button x:Name="button_login" Grid.Row="5" Content="Login" Margin="10,10,10,10" Click="button_login_Click"/>
+	</Grid>
 </Window>

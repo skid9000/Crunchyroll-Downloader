@@ -20,19 +20,25 @@ namespace Crunchyroll_Downloader
 		{
 			UpdateYtdl();
 		}
+
+		private void button_Click2(object sender, RoutedEventArgs e)
+		{
+			UpdateYtdl();
+		}
+
 		private async void UpdateYtdl()
 		{
-            var process = new Process
-            {
-                StartInfo =
-                {
-                    FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe",
-                    Arguments = "-U",
-                    WindowStyle = ProcessWindowStyle.Normal
-                }
-            };
-            // Configure the process using the StartInfo properties.
-            process.Start();
+			var process = new Process
+			{
+				StartInfo =
+				{
+					FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe",
+					Arguments = "-U",
+					WindowStyle = ProcessWindowStyle.Normal
+				}
+			};
+			// Configure the process using the StartInfo properties.
+			process.Start();
 			await Task.Run(() => process.WaitForExit()); // Waits here for the process to exit. Without any thread blocks.
 		}
 	}
