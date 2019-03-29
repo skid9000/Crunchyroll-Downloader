@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using CrunchyrollDownloader;
@@ -45,7 +44,7 @@ namespace Crunchyroll_Downloader
 		private Installer _installer = new Installer();
 		private async Task RedownloadDeps()
 		{
-			_installer.DeleteInstalation();
+			_installer.DeleteInstallation();
 			await _installer.InstallAll();
 		}
 	}

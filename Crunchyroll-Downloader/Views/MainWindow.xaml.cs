@@ -81,7 +81,7 @@ namespace CrunchyrollDownloader
 				}
 				_vm.AreSubtitlesEnabled = true;
 			}
-			if (_vm.HasCookies)
+			if (_vm.HasLogin)
 			{
 				await _vm.Download();
 			}
@@ -105,8 +105,8 @@ namespace CrunchyrollDownloader
 
 		private void button_logout_Click(object sender, RoutedEventArgs e)
 		{
-			File.Delete(@"C:\ProgramData\Crunchy-DL\cookies.txt");
-			_vm.UpdateCookies();
+			File.Delete(@"C:\ProgramData\Crunchy-DL\login.json");
+			_vm.UpdateLogin();
 		}
 	}
 }
