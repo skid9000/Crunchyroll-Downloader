@@ -15,15 +15,9 @@ using System.Runtime.CompilerServices;
 namespace CrunchyrollDownloader.Properties {
     
     
-<<<<<<< HEAD
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-=======
     [CompilerGenerated()]
     [GeneratedCode("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
     internal sealed partial class Settings : ApplicationSettingsBase {
->>>>>>> 644ec605da8b6d0107da2185f650523b05f35e2a
         
         private static Settings defaultInstance = ((Settings)(Synchronized(new Settings())));
         
