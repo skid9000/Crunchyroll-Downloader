@@ -21,9 +21,9 @@ namespace Crunchyroll_Downloader
 			UpdateYtdl();
 		}
 
-		private void button_Click2(object sender, RoutedEventArgs e)
+		private async void button_Click2Async(object sender, RoutedEventArgs e)
 		{
-			UpdateYtdl();
+			await RedownloadDeps();
 		}
 
 		private async void UpdateYtdl()
@@ -40,6 +40,13 @@ namespace Crunchyroll_Downloader
 			// Configure the process using the StartInfo properties.
 			process.Start();
 			await Task.Run(() => process.WaitForExit()); // Waits here for the process to exit. Without any thread blocks.
+		}
+
+		private Installer _installer = new Installer();
+		private async Task RedownloadDeps()
+		{
+			_installer.DeleteInstalation();
+			await _installer.InstallAll();
 		}
 	}
 }

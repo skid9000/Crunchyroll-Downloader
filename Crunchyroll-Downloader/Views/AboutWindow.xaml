@@ -22,7 +22,7 @@
 		<Label Grid.Row="3" x:Name="label_4" Content="Version : v2.0.0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" Height="26" Width="295"/>
 		<WrapPanel Grid.Row="4" Margin="10,0">
 			<Button x:Name="button" Content="Update Youtube-DL" HorizontalAlignment="Left" Margin="0,15,44,0" VerticalAlignment="Top" Height="34" Width="160" Click="button_Click"/>
-			<Button x:Name="button2" Content="Re-Download Dependencies" HorizontalAlignment="Left" Margin="0,15,0,0" VerticalAlignment="Top" Height="34" Width="160" Click="button_Click2"/>
+			<Button x:Name="button2" Content="Re-Download Dependencies" HorizontalAlignment="Left" Margin="0,15,0,0" VerticalAlignment="Top" Height="34" Width="160" Click="button_Click2Async"/>
 		</WrapPanel>
 	</Grid>
 </Window>

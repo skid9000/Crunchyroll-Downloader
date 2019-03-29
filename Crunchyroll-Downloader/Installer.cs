@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Crunchyroll_Downloader;
 using CrunchyrollDownloader.Progress;
 using CrunchyrollDownloader.ViewModels;
 using ICSharpCode.SharpZipLib.Zip;
@@ -28,7 +29,7 @@ namespace CrunchyrollDownloader
 			var viewerThread = new Thread(() =>
 			{
 				var downloadWindow = new DownloadWindow(data);
-				downloadWindow.Show();
+				downloadWindow.ShowDialog();
 				downloadWindow.Activate();
 				downloadWindow.Closed += (s, e) =>
 				Dispatcher.CurrentDispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
@@ -85,6 +86,11 @@ namespace CrunchyrollDownloader
 			if (Directory.Exists(InstallFolder))
 				Directory.Delete(InstallFolder, true);
 			return false;
+		}
+
+		public void DeleteInstalation()
+		{
+			Directory.Delete(InstallFolder, true);
 		}
 	}
 }
