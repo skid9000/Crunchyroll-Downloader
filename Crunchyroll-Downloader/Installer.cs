@@ -78,9 +78,9 @@ namespace CrunchyrollDownloader
 			return false;
 		}
 
-        public void DeleteInstallation()
-        {
+		public void DeleteInstallation()
+		{
 			Directory.Delete(InstallFolder, true);
-        }
-    }
+		}
+	}
 }
