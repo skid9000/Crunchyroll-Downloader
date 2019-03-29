@@ -154,40 +154,32 @@ namespace CrunchyrollDownloader.ViewModels
 			};
 
 			SavePath += @"\%(title)s.%(ext)s";
+			string BasicArguments = $" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent \"Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0\" --no-part -o \"{SavePath}\" ";
+			string SubsArguments = $" --write-sub --sub-lang {Language} --sub-format {Format} ";
 
-			if (MkvStatus == "1")
+			if (AreSubtitlesEnabled)
 			{
-				if (AreSubtitlesEnabled)
+				if (MkvStatus == "1")
 				{
 					if (Quality == Best)
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Language} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f best --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" {SubsArguments} {BasicArguments} {Url}";
 					else
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Language} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" {SubsArguments} {BasicArguments} {Url}";
 				}
 				else
 				{
 					if (Quality == Best)
-						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f best {SubsArguments} {BasicArguments} {Url}";
 					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" {SubsArguments} {BasicArguments} {Url}";
 				}
 			}
 			else
 			{
-				if (AreSubtitlesEnabled)
-				{
-					if (Quality == Best)
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Language} --sub-format {Format} -f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
-					else
-						process.StartInfo.Arguments = $"--write-sub --sub-lang {Language} --sub-format {Format} -f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
-				}
+				if (Quality == Best)
+					process.StartInfo.Arguments = $"-f best {BasicArguments} {Url}";
 				else
-				{
-					if (Quality == Best)
-						process.StartInfo.Arguments = $"-f best --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
-					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --no-part -o \"{SavePath}\" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt {Url}";
-				}
+					process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" {BasicArguments} {Url}";
 			}
 
 			var data = new DownloadingViewModel
