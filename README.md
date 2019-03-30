@@ -4,8 +4,6 @@ A little GUI to download crap from Crunchyroll.
 
 ![screenshot](https://github.com/skid9000/Crunchyroll-Downloader/blob/master/screenshot.png)
 
-/!\ Due to problems with Crunchyroll crap, premium only video cannot be downloaded at the moment, i try my best to found a solution. /!\
-
 ## Dependencies & used tools
 
 ***You need a premium Crunchyroll account to use this tool!***
