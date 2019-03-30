@@ -16,16 +16,16 @@ namespace CrunchyrollDownloader
 	public class QualityItem
 	{
 		public static QualityItem[] AllQualities => Enum.GetValues(typeof(Quality)).Cast<Quality>().Select(q => new QualityItem(q)).ToArray();
-		public QualityItem(Quality quality)
+		public QualityItem(Quality innerQuality)
 		{
-			Quality = quality;
+			InnerQuality = innerQuality;
 		}
-		public string DisplayName => Quality.ToDisplay();
-		public Quality Quality { get; set; }
+		public string DisplayName => InnerQuality.ToDisplay();
+		public Quality InnerQuality { get; set; }
 
 		public static bool operator ==(QualityItem i, Quality q)
 		{
-			return i?.Quality == q;
+			return i?.InnerQuality == q;
 		}
 
 		public static bool operator !=(QualityItem i, Quality q)
@@ -33,7 +33,7 @@ namespace CrunchyrollDownloader
 			return !(i == q);
 		}
 
-		public override string ToString() => Quality.ToNormalized();
+		public override string ToString() => InnerQuality.ToNormalized();
 	}
 	public static class QualityExtensions
 	{

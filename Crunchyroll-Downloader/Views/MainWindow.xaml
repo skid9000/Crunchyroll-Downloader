@@ -79,7 +79,7 @@
 			<Label Grid.Column="4" Content="Format" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
 			<ComboBox Grid.Column="5" VerticalAlignment="Center" IsEnabled="{Binding AreSubtitlesEnabled}" SelectedItem="{Binding Format}"
 					  ItemsSource="{Binding AvailableFormats}"/>
-				<CheckBox Grid.Column="6" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="{Binding AreSubtitlesEnabled}" IsChecked="{Binding MkvStatus}"/>
+				<CheckBox Grid.Column="6" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="{Binding AreSubtitlesEnabled}" IsChecked="{Binding IsMkv}"/>
 			<Label Grid.Column="7" Content="MKV" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" />
 		</Grid>
 		<!-- Path part -->
