@@ -58,6 +58,7 @@ namespace CrunchyrollDownloader
 				File.Delete(@"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
 				File.Delete(@"C:\ProgramData\Crunchy-DL\ffplay.zip");
 				File.Delete(@"C:\ProgramData\Crunchy-DL\ffprobe.zip");
+
 				window.Close();
 			}
 		}

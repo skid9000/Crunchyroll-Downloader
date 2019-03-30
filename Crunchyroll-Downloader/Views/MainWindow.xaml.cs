@@ -21,21 +21,6 @@ namespace CrunchyrollDownloader
 			DataContext = _vm = new MainWindowViewModel();
 			InitializeComponent();
 		}
-		private void UpdateYtdl()
-		{
-			var process = new Process
-			{
-				StartInfo =
-				{
-					FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe",
-					Arguments = "-U",
-					WindowStyle = ProcessWindowStyle.Normal
-				}
-			};
-			// Configure the process using the StartInfo properties.
-			process.Start();
-			process.WaitForExit(); // Waits here for the process to exit.
-		}
 
 		private void button_Save_Click(object sender, RoutedEventArgs e)
 		{
