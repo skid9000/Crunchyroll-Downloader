@@ -72,7 +72,8 @@ namespace CrunchyrollDownloader
 			await Task.Run(() => zip.ExtractZip(InstallFolder + @"\ffplay.zip", InstallFolder, ""));
 			data.Progress.CurrentTask.Progress = 0.66;
 			await Task.Run(() => zip.ExtractZip(InstallFolder + @"\ffprobe.zip", InstallFolder, ""));
-			data.Progress.GoNext();
+            data.Progress.CurrentTask.Progress = 0.99;
+            data.Progress.GoNext();
 			data.IsIndeterminate = true;
 			await Task.Run(() => 
 			{                
