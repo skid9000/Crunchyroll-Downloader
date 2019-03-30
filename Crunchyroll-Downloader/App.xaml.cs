@@ -15,7 +15,9 @@ namespace CrunchyrollDownloader
 			{
 				await _installer.InstallAll();
 			}
-			new MainWindow().Show();
+			 var w = new MainWindow();
+             w.Closed += (_,__) => Shutdown();
+		     w.Show();
 		}
-	}
+    }
 }
