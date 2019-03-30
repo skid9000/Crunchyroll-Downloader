@@ -1,10 +1,7 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Windows;
 using System.IO;
-using System.Threading.Tasks;
-using System.Windows;
-using CrunchyrollDownloader.Progress;
 using CrunchyrollDownloader.ViewModels;
+using Newtonsoft.Json;
 
 namespace CrunchyrollDownloader
 {
@@ -37,34 +34,22 @@ namespace CrunchyrollDownloader
 				return;
 			}
 
-			var process = new Process
-			{
-				StartInfo =
-				{
-					FileName = @"C:\ProgramData\Crunchy-DL\login.exe",
-					Arguments = $@"""{username}"" ""{password}""",
-					WindowStyle = ProcessWindowStyle.Hidden
-				}
-			};
-			// Configure the process using the StartInfo properties.
-			process.Start();
-			var data = new DownloadingViewModel
-			{
-				IsIndeterminate = true,
-				Progress = new TaskManager(new[] {new ProgressTask("Logging in") {Display = "{3}..."}})
-			};
-			var window = new DownloadWindow(data) { Owner = this };
-			window.Show();
-			await Task.Run(() => process.WaitForExit());// Waits here for the process to exit.
-			window.Close();
-			if (!File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt"))
-			{
-				MessageBox.Show("Something went wrong when logging into your account. Please check your credentials.",
-					"Oops", MessageBoxButton.OK, MessageBoxImage.Error);
-				return;
-			}
-			_otherVm?.UpdateCookies();
+			IdentsInfos i = new IdentsInfos();
+			i.username = username;
+			i.password = password;
+
+			File.WriteAllText(@"C:\ProgramData\Crunchy-DL\login.json", JsonConvert.SerializeObject(i));
+
+			_otherVm.UpdateLogin();
 			Close();
+			
 		}
 	}
+
+	public class IdentsInfos
+	{
+		public string username { get; set; }
+		public string password { get; set; }
+	}
+
 }

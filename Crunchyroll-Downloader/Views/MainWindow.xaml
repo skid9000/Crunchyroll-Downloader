@@ -29,8 +29,8 @@
 				</Style>
 			</UniformGrid.Resources>
 			<Button x:Name="aboutButton" Content="About" Width="100" Click="aboutButton_Click"/>
-			<Button x:Name="button_logout" Content="Logout" Click="button_logout_Click" IsEnabled="{Binding HasCookies}"/>
-			<Button x:Name="button_login" Content="Login" Click="button_login_Click" IsEnabled="{Binding HasNoCookies}"/>
+			<Button x:Name="button_logout" Content="Logout" Click="button_logout_Click" IsEnabled="{Binding HasLogin}"/>
+			<Button x:Name="button_login" Content="Login" Click="button_login_Click" IsEnabled="{Binding HasNoLogin}"/>
 		</UniformGrid>
 		<!-- URL part -->
 		<Grid Grid.Row="2" Margin="5,0,5,0">
@@ -79,8 +79,8 @@
 			<Label Grid.Column="4" x:Name="label1_Copy" Content="Format" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
 			<ComboBox Grid.Column="5" x:Name="comboBox_Copy" VerticalAlignment="Center" IsEnabled="{Binding AreSubtitlesEnabled}" SelectedItem="{Binding Format}"
 					  ItemsSource="{Binding AvailableFormats}"/>
-				<CheckBox Grid.Column="6" x:Name="MkvcheckBox" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="{Binding AreSubtitlesEnabled}"/>
-			<Label Grid.Column="7" x:Name="label2_Copy" Content="MKV" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" IsEnabled="False"/>
+				<CheckBox Grid.Column="6" x:Name="MkvcheckBox" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="{Binding AreSubtitlesEnabled}" IsChecked="{Binding MkvStatus}"/>
+			<Label Grid.Column="7" x:Name="label2_Copy" Content="MKV" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" />
 		</Grid>
 		<!-- Path part -->
 		<Grid Grid.Row="4" Margin="5,0,5,0">

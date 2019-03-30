@@ -5,14 +5,14 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Threading;
 using CrunchyrollDownloader.Models;
 using CrunchyrollDownloader.Progress;
+using Newtonsoft.Json;
 using static System.Globalization.CultureInfo;
 using static CrunchyrollDownloader.Quality;
+
 namespace CrunchyrollDownloader.ViewModels
 {
 	public class MainWindowViewModel : ViewModelBase<DownloaderModel>
@@ -50,7 +50,7 @@ namespace CrunchyrollDownloader.ViewModels
 			set => SetModelProperty(value);
 		}
 
-		public string MkvStatus
+		public bool MkvStatus
 		{
 			get => Model.MkvStatus;
 			set => SetModelProperty(value);
@@ -79,7 +79,7 @@ namespace CrunchyrollDownloader.ViewModels
 			get => Model.Url;
 			set => SetModelProperty(value);
 		}
-		private int _selectedQualityItemIndex = 1;
+		private int _selectedQualityItemIndex = 0;
 
 		public int SelectedQualityItemIndex
 		{
@@ -99,13 +99,13 @@ namespace CrunchyrollDownloader.ViewModels
 			set => SelectedQualityItemIndex = Array.IndexOf(QualityItem.AllQualities, value);
 		}
 
-		public bool HasCookies => File.Exists(@"C:\ProgramData\Crunchy-DL\cookies.txt");
-		public bool HasNoCookies => !HasCookies;
+		public bool HasLogin => File.Exists(@"C:\ProgramData\Crunchy-DL\login.json");
+		public bool HasNoLogin => !HasLogin;
 
 		public List<CultureInfo> AvailableLanguages { get; } = new List<CultureInfo>
 		{
-			GetCultureInfo("fr-FR"),
 			GetCultureInfo("en-US"),
+			GetCultureInfo("fr-FR"),
 			GetCultureInfo("es-ES"),
 			GetCultureInfo("es-LA"),
 			GetCultureInfo("pt-BR"),
@@ -121,8 +121,7 @@ namespace CrunchyrollDownloader.ViewModels
 			{
 				if (_selectedCultureInfo is null)
 				{
-					if (AvailableLanguages.Contains(InstalledUICulture)) _selectedCultureInfo = InstalledUICulture;
-					else _selectedCultureInfo = AvailableLanguages[1];
+					_selectedCultureInfo = AvailableLanguages[0];
 				}
 				return _selectedCultureInfo;
 			}
@@ -133,53 +132,61 @@ namespace CrunchyrollDownloader.ViewModels
 			}
 		}
 
-		public void UpdateCookies()
+		public void UpdateLogin()
 		{
-			OnPropertyChanged(nameof(HasCookies));
-			OnPropertyChanged(nameof(HasNoCookies));
+			OnPropertyChanged(nameof(HasLogin));
+			OnPropertyChanged(nameof(HasNoLogin));
 		}
 		public async Task Download()
 		{
+			string loginJson = File.ReadAllText(@"C:\ProgramData\Crunchy-DL\login.json");
+			dynamic loginIdents = JsonConvert.DeserializeObject(loginJson);
+			string username = loginIdents.username;
+			string password = loginIdents.password;
+
+			string currentSavePath = SavePath;
+			currentSavePath += @"\%(title)s.%(ext)s";
+
+			string login = $"--username {username} --password {password}";
+			string ua = $"--user-agent \"Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0\"";
+			string basicArguments = $"{login} --console-title --newline --no-warnings --no-part -o \"{currentSavePath}\" {ua}";
+			string subsArguments = $"--write-sub --sub-lang {Language} --sub-format {Format}";
 
 			var process = new Process
 			{
 				StartInfo =
 				{
 					FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe",
-					WindowStyle = ProcessWindowStyle.Hidden,
+					WindowStyle = ProcessWindowStyle.Normal,
 					UseShellExecute = false,
-					RedirectStandardOutput = true,
-					RedirectStandardError = true
+					RedirectStandardOutput = false,
+					RedirectStandardError = false
 				}
 			};
 
-			SavePath += @"\%(title)s.%(ext)s";
-			string BasicArguments = $" --cookies C:\\ProgramData\\Crunchy-DL\\cookies.txt --download-archive C:\\ProgramData\\Crunchy-DL\\youtube-dl_archive.txt --user-agent \"Mozilla / 5.0 (Windows NT 10.0; Win64; x64; rv: 65.0) Gecko / 20100101 Firefox / 65.0\" --no-part -o \"{SavePath}\" ";
-			string SubsArguments = $" --write-sub --sub-lang {Language} --sub-format {Format} ";
-
 			if (AreSubtitlesEnabled)
 			{
-				if (MkvStatus == "1")
+				if (MkvStatus == true)
 				{
-					if (Quality == Best)
-						process.StartInfo.Arguments = $"-f best --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" {SubsArguments} {BasicArguments} {Url}";
+					if ($"{Quality}" == "best")
+						process.StartInfo.Arguments = $"-f best --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" {subsArguments} {basicArguments} {Url}";
 					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" {SubsArguments} {BasicArguments} {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" --recode-video mkv --embed-subs --postprocessor-args \"-disposition:s:0 default\" {subsArguments} {basicArguments} {Url}";
 				}
 				else
 				{
-					if (Quality == Best)
-						process.StartInfo.Arguments = $"-f best {SubsArguments} {BasicArguments} {Url}";
+					if ($"{Quality}" == "best")
+						process.StartInfo.Arguments = $"-f best {subsArguments} {basicArguments} {Url}";
 					else
-						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" {SubsArguments} {BasicArguments} {Url}";
+						process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" {subsArguments} {basicArguments} {Url}";
 				}
 			}
 			else
 			{
-				if (Quality == Best)
-					process.StartInfo.Arguments = $"-f best {BasicArguments} {Url}";
+				if ($"{Quality}" == "best")
+					process.StartInfo.Arguments = $"-f best {basicArguments} {Url}";
 				else
-					process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" {BasicArguments} {Url}";
+					process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" {basicArguments} {Url}";
 			}
 
 			var data = new DownloadingViewModel

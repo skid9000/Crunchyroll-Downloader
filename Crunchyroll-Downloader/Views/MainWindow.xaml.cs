@@ -21,21 +21,6 @@ namespace CrunchyrollDownloader
 			DataContext = _vm = new MainWindowViewModel();
 			InitializeComponent();
 		}
-		private void UpdateYtdl()
-		{
-			var process = new Process
-			{
-				StartInfo =
-				{
-					FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe",
-					Arguments = "-U",
-					WindowStyle = ProcessWindowStyle.Normal
-				}
-			};
-			// Configure the process using the StartInfo properties.
-			process.Start();
-			process.WaitForExit(); // Waits here for the process to exit.
-		}
 
 		private void button_Save_Click(object sender, RoutedEventArgs e)
 		{
@@ -81,7 +66,7 @@ namespace CrunchyrollDownloader
 				}
 				_vm.AreSubtitlesEnabled = true;
 			}
-			if (_vm.HasCookies)
+			if (_vm.HasLogin)
 			{
 				await _vm.Download();
 			}
@@ -105,8 +90,8 @@ namespace CrunchyrollDownloader
 
 		private void button_logout_Click(object sender, RoutedEventArgs e)
 		{
-			File.Delete(@"C:\ProgramData\Crunchy-DL\cookies.txt");
-			_vm.UpdateCookies();
+			File.Delete(@"C:\ProgramData\Crunchy-DL\login.json");
+			_vm.UpdateLogin();
 		}
 	}
 }
