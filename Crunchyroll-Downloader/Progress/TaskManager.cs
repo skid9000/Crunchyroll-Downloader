@@ -69,7 +69,7 @@ namespace CrunchyrollDownloader.Progress
 		public double Progress
 		{
 			get => _progress;
-			set => Set(Math.Min(value, 100), out _progress);
+			set => Set(Math.Min(value, 1), out _progress);
 		}
 
 		public bool IsComplete => Progress >= 1 - double.Epsilon * 10;
