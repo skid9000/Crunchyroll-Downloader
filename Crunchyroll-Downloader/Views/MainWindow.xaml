@@ -1,0 +1,99 @@
+﻿<Window x:Class="CrunchyrollDownloader.Views.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:crunchyrollDownloader="clr-namespace:CrunchyrollDownloader"
+		xmlns:viewModels="clr-namespace:CrunchyrollDownloader.ViewModels"
+		xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib" WindowStartupLocation="CenterScreen"
+		mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
+		Title="Crunchyroll Downloader" Height="350" Width="525" ResizeMode="CanMinimize" Icon="/Images/logo.ico">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="50" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="30" />
+			<RowDefinition Height="50" />
+		</Grid.RowDefinitions>
+		<Grid.Background>
+			<ImageBrush ImageSource="/Images/background.jpg"/>
+		</Grid.Background>
+		<Image Grid.Row="0" Margin="10,10,10,0" Source="/Images/crunchy.png"/>
+		<!-- Common buttons -->
+		<UniformGrid Grid.Row="1" HorizontalAlignment="Right" Columns="3">
+			<UniformGrid.Resources>
+				<Style TargetType="Button">
+					<Setter Property="Margin" Value="5 0"></Setter>
+				</Style>
+			</UniformGrid.Resources>
+			<Button x:Name="AboutButton" Content="About" Width="100" Click="AboutButtonClick"/>
+			<Button x:Name="LogoutButton" Content="Logout" Click="LogoutButtonClick" IsEnabled="{Binding HasLogin}"/>
+			<Button x:Name="LoginButton" Content="Login" Click="LoginButtonClick" IsEnabled="{Binding HasNoLogin}"/>
+		</UniformGrid>
+		<!-- URL part -->
+		<Grid Grid.Row="2" Margin="5,0,5,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="50"/>
+				<ColumnDefinition Width="120"/>
+				<ColumnDefinition Width="40"/>
+				<ColumnDefinition Width="300"/>
+			</Grid.ColumnDefinitions>
+
+			<Label Grid.Column="0" Content="Quality" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+			<ComboBox Grid.Column="1" Height="25" VerticalAlignment="Center" 
+					  ItemsSource="{x:Static crunchyrollDownloader:QualityItem.AllQualities}"
+					  SelectedIndex="{Binding SelectedQualityItemIndex}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate DataType="{x:Type crunchyrollDownloader:QualityItem}">
+						<TextBlock Text="{Binding DisplayName}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<Label Grid.Column="2" Content="URL" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+			<TextBox Grid.Column="3" Text="{Binding Url}" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+		</Grid>
+		<!-- Subtitle part -->
+		<Grid Grid.Row="3" Margin="5,0,5,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="65" />
+				<ColumnDefinition Width="20" />
+				<ColumnDefinition Width="70" />
+				<ColumnDefinition Width="1.5*"/>
+				<ColumnDefinition Width="55" />
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="20" />
+				<ColumnDefinition Width="40" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="Subtitles" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+			<CheckBox Grid.Column="1" x:Name="SubtitlesCheckBox" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding AreSubtitlesEnabled, Mode=TwoWay}"/>
+			<Label Grid.Column="2" Content="Language" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+			<ComboBox Grid.Column="3" VerticalAlignment="Center" IsEnabled="{Binding AreSubtitlesEnabled}" ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}">
+				<ComboBox.ItemTemplate>
+					<DataTemplate DataType="{x:Type globalization:CultureInfo}">
+						<TextBlock Text="{Binding NativeName}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<Label Grid.Column="4" Content="Format" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+			<ComboBox Grid.Column="5" VerticalAlignment="Center" IsEnabled="{Binding AreSubtitlesEnabled}" SelectedItem="{Binding Format}"
+					  ItemsSource="{Binding AvailableFormats}"/>
+			<CheckBox Grid.Column="6" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="{Binding AreSubtitlesEnabled}" IsChecked="{Binding IsMkv, Mode=TwoWay}"/>
+			<Label Grid.Column="7" Content="MKV" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" />
+		</Grid>
+		<!-- Path part -->
+		<Grid Grid.Row="4" Margin="5,0,5,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="80" />
+				<ColumnDefinition />
+				<ColumnDefinition Width="80" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="Save Path" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Foreground="White"/>
+			<TextBox Grid.Column="1" Height="25" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding SavePath}"/>
+			<Button Grid.Column="2" Content="Browse" Height="25" Margin="5,0,0,0" Click="SaveButtonClick"/>
+		</Grid>
+		<!-- Download button part -->
+		<Button Grid.Row="5" Content="Start" Margin="5,5,5,5" Click="button_Click" VerticalContentAlignment="Center"/>
+	</Grid>
+</Window>
