@@ -6,7 +6,7 @@
 		xmlns:viewModels="clr-namespace:CrunchyrollDownloader.ViewModels"
 		mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:ProgressViewModel}"
 		Title="{Binding Progress.CurrentName}" Height="210" Width="460" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" IsTabStop="True">
-    <Grid>
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition />
 			<RowDefinition Height="Auto" />
@@ -16,7 +16,7 @@
 			<ImageBrush ImageSource="{StaticResource BackgroundImage}"/>
 		</Grid.Background>
 		<Rectangle Fill="Gray" Opacity="0.65" Grid.RowSpan="3"/>
-        <Rectangle Fill="Black" Opacity="0.25" Grid.RowSpan="2" Grid.Row="1"/>
+		<Rectangle Fill="Black" Opacity="0.25" Grid.RowSpan="2" Grid.Row="1"/>
 		<Image Margin="20" Source="/Images/crunchy.png" Grid.Row="0"/>
 		<TextBlock Text="{Binding Progress.CurrentDisplay}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Margin="3"/>
 		<ProgressBar Height="25" Margin="10 5" IsIndeterminate="{Binding IsIndeterminate}" Grid.Row="2" Maximum="1" Value="{Binding Progress.TotalProgress, Mode=OneWay}"/>

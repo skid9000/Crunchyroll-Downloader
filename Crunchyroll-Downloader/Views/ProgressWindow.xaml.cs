@@ -18,12 +18,12 @@ namespace CrunchyrollDownloader.Views
 			InitializeComponent();
 		}
 
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            if (_vm.Progress.CurrentTask is null) return;
-            e.Cancel = true;
-            MessageBox.Show("This task cannot be interrupted at the moment.", "Error", MessageBoxButton.OK,
-                MessageBoxImage.Information);
-        }
-    }
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			if (_vm.Progress.CurrentTask is null) return;
+			e.Cancel = true;
+			MessageBox.Show("This task cannot be interrupted at the moment.", "Error", MessageBoxButton.OK,
+				MessageBoxImage.Information);
+		}
+	}
 }
