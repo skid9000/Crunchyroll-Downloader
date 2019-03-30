@@ -39,15 +39,15 @@ namespace CrunchyrollDownloader.Views
 			};
 			// Configure the process using the StartInfo properties.
 			process.Start();
-            var manager = new TaskManager("Updating YTDL...");
-            var window = Application.Current.Dispatcher.Invoke(() => new ProgressWindow(new ProgressViewModel
-            {
-                IsIndeterminate = true,
-                Progress = manager
-            }));
-            _ = Task.Run(() => Application.Current.Dispatcher.Invoke(() => window.ShowDialog()));
+			var manager = new TaskManager("Updating YTDL...");
+			var window = Application.Current.Dispatcher.Invoke(() => new ProgressWindow(new ProgressViewModel
+			{
+				IsIndeterminate = true,
+				Progress = manager
+			}));
+			_ = Task.Run(() => Application.Current.Dispatcher.Invoke(() => window.ShowDialog()));
 			await Task.Run(() => process.WaitForExit()); // Waits here for the process to exit. Without any thread blocks.
-            window.Close();
+			window.Close();
 		}
 
 		private readonly Installer _installer = new Installer();
