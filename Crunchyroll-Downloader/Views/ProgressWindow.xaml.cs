@@ -18,7 +18,7 @@ namespace CrunchyrollDownloader.Views
 			InitializeComponent();
 		}
 
-        private bool _forceClose;
+		private bool _forceClose;
 		protected override void OnClosing(CancelEventArgs e)
 		{
 			if (_vm.Progress.CurrentTask is null || _forceClose) return;
@@ -27,10 +27,10 @@ namespace CrunchyrollDownloader.Views
 				MessageBoxImage.Information);
 		}
 
-        public new void Close()
-        {
-            _forceClose = true;
-            base.Close();
-        }
+		public new void Close()
+		{
+			_forceClose = true;
+			base.Close();
+		}
 	}
 }
