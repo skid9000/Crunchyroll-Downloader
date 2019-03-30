@@ -20,7 +20,7 @@ namespace CrunchyrollDownloader.Progress
 			}
 		}
 
-		public string CurrentDisplay => CurrentTask.GetFormattedDisplay(Tasks.IndexOf(CurrentTask) + 1, Tasks.Count);
+		public string CurrentDisplay => CurrentTask is null ? "Complete!" : CurrentTask.GetFormattedDisplay(Tasks.IndexOf(CurrentTask) + 1, Tasks.Count);
 		public ProgressTask CurrentTask => Tasks.FirstOrDefault(p => !p.IsComplete);
 		public TaskManager(IEnumerable<ProgressTask> tasks)
 		{
@@ -51,7 +51,6 @@ namespace CrunchyrollDownloader.Progress
 		{
 			return string.Format(Display, current, remaining, Progress.ToString("P"), Name);
 		}
-
 		public string Name { get; set; }
 		public string Display { get; set; } = "{3}... {2} [{0}/{1}]";
 
