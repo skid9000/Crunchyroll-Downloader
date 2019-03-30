@@ -21,16 +21,16 @@ namespace CrunchyrollDownloader.Views
 		private bool _forceClose;
 		protected override void OnClosing(CancelEventArgs e)
 		{
-            if (_vm.CanClose())
-            {
-                if (MessageBox.Show("Are you sure you want to interrupt this?", "Interruption", MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) == MessageBoxResult.Yes)
-                {
-                    _vm.OnClose();
-                    return;
-                }
-                e.Cancel = true;
-            }
+			if (_vm.CanClose())
+			{
+				if (MessageBox.Show("Are you sure you want to interrupt this?", "Interruption", MessageBoxButton.YesNo,
+					MessageBoxImage.Question) == MessageBoxResult.Yes)
+				{
+					_vm.OnClose();
+					return;
+				}
+				e.Cancel = true;
+			}
 			if (_vm.Progress.CurrentTask is null || _forceClose) return;
 			e.Cancel = true;
 			MessageBox.Show("This task cannot be interrupted at the moment.", "Error", MessageBoxButton.OK,
