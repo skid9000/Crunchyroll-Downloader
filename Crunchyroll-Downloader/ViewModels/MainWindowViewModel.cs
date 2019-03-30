@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using CrunchyrollDownloader.Models;
 using CrunchyrollDownloader.Progress;
+using CrunchyrollDownloader.Views;
 using Newtonsoft.Json;
 using static System.Globalization.CultureInfo;
 using static CrunchyrollDownloader.Quality;
@@ -189,7 +190,7 @@ namespace CrunchyrollDownloader.ViewModels
 					process.StartInfo.Arguments = $"-f \"best[height={Quality}]\" {basicArguments} {Url}";
 			}
 
-			var data = new DownloadingViewModel
+			var data = new ProgressViewModel
 			{
 				IsIndeterminate = true,
 				Progress = new TaskManager(new[]
@@ -197,9 +198,8 @@ namespace CrunchyrollDownloader.ViewModels
 					new ProgressTask("Downloading")
 				})
 			};
-			var downloadWindow = new DownloadWindow(data);
-			downloadWindow.Show();
-			downloadWindow.Activate();
+			var downloadWindow = new ProgressWindow(data);
+			downloadWindow.ShowDialog();
 			process.ErrorDataReceived += (_, __) => { };
 			process.OutputDataReceived += (sender, args) =>
 			{

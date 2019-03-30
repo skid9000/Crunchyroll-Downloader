@@ -2,7 +2,7 @@
 
 namespace CrunchyrollDownloader.ViewModels
 {
-	public class DownloadingViewModel : PropertyChangedObject
+	public class ProgressViewModel : PropertyChangedObject
 	{
 		public TaskManager Progress { get; set; }
 		private bool _isIndeterminate;

@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 using CrunchyrollDownloader.ViewModels;
-using Crunchyroll_Downloader;
 using MessageBox = System.Windows.MessageBox;
 
-namespace CrunchyrollDownloader
+namespace CrunchyrollDownloader.Views
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private MainWindowViewModel _vm;
-		private Installer _installer = new Installer();
+		private readonly MainWindowViewModel _vm;
 		public MainWindow()
 		{
 			DataContext = _vm = new MainWindowViewModel();
 			InitializeComponent();
 		}
 
-		private void button_Save_Click(object sender, RoutedEventArgs e)
+		private void SaveButtonClick(object sender, RoutedEventArgs e)
 		{
 			// Create OpenFileDialog
 			var dialog = new FolderBrowserDialog();
@@ -51,7 +48,7 @@ namespace CrunchyrollDownloader
 				MessageBox.Show("Please, put a save path.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				return;
 			}
-			if (checkBox.IsChecked ?? false)
+			if (SubtitlesCheckBox.IsChecked ?? false)
 			{
 
 				if (string.IsNullOrEmpty(_vm.Language))
@@ -74,21 +71,19 @@ namespace CrunchyrollDownloader
 				MessageBox.Show("Please login.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 		}
 
-		private void aboutButton_Click(object sender, RoutedEventArgs e)
+		private void AboutButtonClick(object sender, RoutedEventArgs e)
 		{
 			var aboutWindow = new AboutWindow { Owner = this };
 			aboutWindow.ShowDialog();
-			Focus();
 		}
 
-		private void button_login_Click(object sender, RoutedEventArgs e)
+		private void LoginButtonClick(object sender, RoutedEventArgs e)
 		{
 			var loginWindow = new LoginWindow(_vm) { Owner = this };
 			loginWindow.ShowDialog();
-			Focus();
 		}
 
-		private void button_logout_Click(object sender, RoutedEventArgs e)
+		private void LogoutButtonClick(object sender, RoutedEventArgs e)
 		{
 			File.Delete(@"C:\ProgramData\Crunchy-DL\login.json");
 			_vm.UpdateLogin();

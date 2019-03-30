@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
-using CrunchyrollDownloader;
+using CrunchyrollDownloader.Progress;
+using CrunchyrollDownloader.ViewModels;
 
-namespace Crunchyroll_Downloader
+namespace CrunchyrollDownloader.Views
 {
 	/// <summary>
 	/// About the program
@@ -15,17 +16,17 @@ namespace Crunchyroll_Downloader
 			InitializeComponent();
 		}
 
-		private void button_Click(object sender, RoutedEventArgs e)
+		private async void button_Click(object sender, RoutedEventArgs e)
 		{
-			UpdateYtdl();
+			await UpdateYtdl();
 		}
 
 		private async void button_Click2Async(object sender, RoutedEventArgs e)
 		{
-			await RedownloadDeps();
+			await RedownloadDependencies();
 		}
 
-		private async void UpdateYtdl()
+		private async Task UpdateYtdl()
 		{
 			var process = new Process
 			{
@@ -33,16 +34,24 @@ namespace Crunchyroll_Downloader
 				{
 					FileName = @"C:\ProgramData\Crunchy-DL\youtube-dl.exe",
 					Arguments = "-U",
-					WindowStyle = ProcessWindowStyle.Normal
+					WindowStyle = ProcessWindowStyle.Hidden
 				}
 			};
 			// Configure the process using the StartInfo properties.
 			process.Start();
+            var manager = new TaskManager("Updating YTDL...");
+            var window = Application.Current.Dispatcher.Invoke(() => new ProgressWindow(new ProgressViewModel
+            {
+                IsIndeterminate = true,
+                Progress = manager
+            }));
+            _ = Task.Run(() => Application.Current.Dispatcher.Invoke(() => window.ShowDialog()));
 			await Task.Run(() => process.WaitForExit()); // Waits here for the process to exit. Without any thread blocks.
+            window.Close();
 		}
 
-		private Installer _installer = new Installer();
-		private async Task RedownloadDeps()
+		private readonly Installer _installer = new Installer();
+		private async Task RedownloadDependencies()
 		{
 			_installer.DeleteInstallation();
 			await _installer.InstallAll();

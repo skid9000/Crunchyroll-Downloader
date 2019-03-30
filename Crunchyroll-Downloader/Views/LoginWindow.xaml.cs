@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using System.IO;
+﻿using System.IO;
+using System.Windows;
 using CrunchyrollDownloader.ViewModels;
 using Newtonsoft.Json;
 
-namespace CrunchyrollDownloader
+namespace CrunchyrollDownloader.Views
 {
 	/// <summary>
 	/// Interaction logic for login.xaml

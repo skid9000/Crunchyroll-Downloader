@@ -9,7 +9,7 @@ namespace CrunchyrollDownloader.Progress
 	{
 		public void GoNext() => CurrentTask.Complete();
 		public List<ProgressTask> Tasks { get; } = new List<ProgressTask>();
-
+        public string FinalizingText { get; set; } = "Finalizing...";
 		public double TotalProgress
 		{
 			get
@@ -19,8 +19,8 @@ namespace CrunchyrollDownloader.Progress
 				return completedProgress / totalProgress;
 			}
 		}
-
-		public string CurrentDisplay => CurrentTask is null ? "Complete!" : CurrentTask.GetFormattedDisplay(Tasks.IndexOf(CurrentTask) + 1, Tasks.Count);
+        public string CurrentName => CurrentTask?.Name ?? FinalizingText;
+		public string CurrentDisplay => CurrentTask is null ? FinalizingText : CurrentTask.GetFormattedDisplay(Tasks.IndexOf(CurrentTask) + 1, Tasks.Count);
 		public ProgressTask CurrentTask => Tasks.FirstOrDefault(p => !p.IsComplete);
 		public TaskManager(IEnumerable<ProgressTask> tasks)
 		{
@@ -31,12 +31,18 @@ namespace CrunchyrollDownloader.Progress
 			}
 		}
 
+        public TaskManager(string display)
+        {
+            FinalizingText = display;
+        }
+
 		private void UpdateProgress(object sender, PropertyChangedEventArgs e)
 		{
 			var task = (ProgressTask) sender;
 			OnPropertyChanged(nameof(TotalProgress));
 			OnPropertyChanged(nameof(CurrentDisplay));
 			OnPropertyChanged(nameof(CurrentTask));
+            OnPropertyChanged(nameof(CurrentName));
 		}
 	}
 

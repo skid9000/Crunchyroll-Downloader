@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using CrunchyrollDownloader.Views;
 
 namespace CrunchyrollDownloader
 {

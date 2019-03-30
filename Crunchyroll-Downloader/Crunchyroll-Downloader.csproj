@@ -105,7 +105,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DownloadWindow.xaml">
+    <Page Include="Views\ProgressWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,7 +124,7 @@
     <Compile Include="PropertyChangedObject.cs" />
     <Compile Include="Quality.cs" />
     <Compile Include="ViewModelBase.cs" />
-    <Compile Include="ViewModels\DownloadingViewModel.cs" />
+    <Compile Include="ViewModels\ProgressViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
@@ -132,8 +132,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DownloadWindow.xaml.cs">
-      <DependentUpon>DownloadWindow.xaml</DependentUpon>
+    <Compile Include="Views\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Views\LoginWindow.xaml.cs">
