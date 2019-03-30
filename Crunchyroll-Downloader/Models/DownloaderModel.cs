@@ -8,7 +8,7 @@
 		public string Format { get; set; } = "srt";
 		public string SavePath { get; set; }
 		public Quality Quality { get; set; } = Quality.Best;
-		public bool MkvStatus { get; set; }
+		public bool IsMkv { get; set; }
 		public string DlStatus { get; set; }
 	}
 }

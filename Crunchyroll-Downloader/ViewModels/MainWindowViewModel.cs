@@ -53,7 +53,7 @@ namespace CrunchyrollDownloader.ViewModels
 
         public bool IsMkv
         {
-            get => Model.MkvStatus;
+            get => Model.IsMkv;
             set => SetModelProperty(value);
         }
 
