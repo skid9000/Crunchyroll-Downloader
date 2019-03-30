@@ -52,8 +52,11 @@ namespace CrunchyrollDownloader
 				data.Progress.GoNext();
 
 				zip.ExtractZip(InstallFolder + @"\ffmpeg.zip", InstallFolder, "");
+				data.Progress.CurrentTask.Progress = 0.33;
 				zip.ExtractZip(InstallFolder + @"\ffplay.zip", InstallFolder, "");
+				data.Progress.CurrentTask.Progress = 0.66;
 				zip.ExtractZip(InstallFolder + @"\ffprobe.zip", InstallFolder, "");
+				data.Progress.CurrentTask.Progress = 1.00;
 
 				File.Delete(@"C:\ProgramData\Crunchy-DL\ffmpeg.zip");
 				File.Delete(@"C:\ProgramData\Crunchy-DL\ffplay.zip");
