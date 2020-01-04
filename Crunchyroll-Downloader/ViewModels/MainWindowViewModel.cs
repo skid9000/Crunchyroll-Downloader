@@ -36,8 +36,7 @@ namespace CrunchyrollDownloader.ViewModels
 
 		public string[] AvailableFormats { get; } =
 		{
-			"srt",
-			"ass" // lol
+			"ass"
 		};
 
 		public string Format
@@ -113,8 +112,9 @@ namespace CrunchyrollDownloader.ViewModels
 			GetCultureInfo("pt-BR"),
 			GetCultureInfo("it-IT"),
 			GetCultureInfo("de-DE"),
-			GetCultureInfo("ru-RU")
-		};
+			GetCultureInfo("ru-RU"),
+            GetCultureInfo("ar-ME")
+        };
 		private CultureInfo _selectedCultureInfo;
 
 		public CultureInfo SelectedLanguage
