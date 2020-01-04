@@ -113,7 +113,7 @@ namespace CrunchyrollDownloader.ViewModels
 			GetCultureInfo("it-IT"),
 			GetCultureInfo("de-DE"),
 			GetCultureInfo("ru-RU"),
-            GetCultureInfo("ar-ME")
+			GetCultureInfo("ar-ME")
         };
 		private CultureInfo _selectedCultureInfo;
 
