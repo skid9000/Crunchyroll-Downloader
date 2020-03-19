@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace CrunchyrollDownloader
@@ -16,6 +17,17 @@ namespace CrunchyrollDownloader
 			if (propertyName is null) throw new ArgumentNullException(nameof(propertyName));
 			typeof(T).GetProperty(propertyName)?.SetValue(Model, value);
 			OnPropertyChanged(propertyName);
+		}
+	}
+
+	public class UnknownCulture : CultureInfo
+	{
+		public override string Name { get; }
+		public override string NativeName => "Unknown language for Windows (" + Name + ")";
+
+		public UnknownCulture(string name) : base("en-US")
+		{
+			Name = name;
 		}
 	}
 }
