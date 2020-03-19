@@ -17,11 +17,14 @@ using static CrunchyrollDownloader.Quality;
 
 namespace CrunchyrollDownloader.ViewModels
 {
+
 	public class MainWindowViewModel : ViewModelBase<DownloaderModel>
 	{
+		readonly static UnknownCulture esla = new UnknownCulture("es-LA");
+		readonly static UnknownCulture arme = new UnknownCulture("ar-ME");
+
 		public MainWindowViewModel() : this(null)
 		{
-
 		}
 
 		public MainWindowViewModel(DownloaderModel model = null) : base(model)
@@ -105,15 +108,16 @@ namespace CrunchyrollDownloader.ViewModels
 
 		public List<CultureInfo> AvailableLanguages { get; } = new List<CultureInfo>
 		{
+
 			GetCultureInfo("en-US"),
 			GetCultureInfo("fr-FR"),
 			GetCultureInfo("es-ES"),
-			GetCultureInfo("es-LA"),
+			esla,
 			GetCultureInfo("pt-BR"),
 			GetCultureInfo("it-IT"),
 			GetCultureInfo("de-DE"),
 			GetCultureInfo("ru-RU"),
-			GetCultureInfo("ar-ME")
+			arme
         };
 		private CultureInfo _selectedCultureInfo;
 
